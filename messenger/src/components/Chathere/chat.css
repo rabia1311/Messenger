@@ -1,0 +1,28 @@
+.flex_screen {
+  display: flex;
+}
+
+.left-symbol {
+  width: 9%;
+  background-color: white;
+  height: 100vh;
+  padding-left: 20px;
+  padding-right: -70px;
+}
+
+.chat_list {
+  width: 30%;
+  background-color: aqua;
+  height: 100vh;
+
+  
+
+}
+
+.chat_area {
+  width: 50%;
+  height: 100vh;
+}
+.chathead{
+  justify-content: space-between;
+}
