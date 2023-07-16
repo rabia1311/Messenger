@@ -10,6 +10,7 @@ import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined
 
 import Sidebar from "../Sidebar";
 import Searchbar from "../Searchbar";
+import Contact from "../Contact";
 
 const Chat = () => {
   return (
@@ -20,7 +21,6 @@ const Chat = () => {
           <WhatsAppIcon fontSize="large" style={{ marginBottom: "80px" }} />
         </div>
         <div>
-          {" "}
           <MapsUgcOutlinedIcon
             fontSize="large"
             style={{ marginBottom: "10px" }}
@@ -60,6 +60,7 @@ const Chat = () => {
       <div className="chat_list">
         <Sidebar />
         <Searchbar />
+        <Contact />
       </div>
 
       <div className="chat_area">Conversations</div>
