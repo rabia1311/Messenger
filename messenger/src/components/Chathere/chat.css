@@ -9,6 +9,7 @@
   padding-left: 20px;
   padding-right: -70px;
   border-right: 1px solid gray;
+  justify-content: space-between;
 }
 
 .chat_list {
@@ -35,4 +36,8 @@
   height: 40px; /* Adjust the height */
   /* Add any other necessary styles */
   display: flex;
+}
+.chat_list {
+  height: 100vh; /* Set the desired height for the chat list container */
+  overflow-y: scroll; /* Enable vertical scrolling */
 }

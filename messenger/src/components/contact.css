@@ -1,0 +1,10 @@
+.userchatinfo p {
+    color: gray;
+  }
+  
+  .userchatinfo span {
+    font-size: 18px;
+    font-weight: 500;
+    color: rgb(32, 48, 223);
+  }
+  
