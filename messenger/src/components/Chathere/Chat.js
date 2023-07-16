@@ -11,6 +11,7 @@ import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined
 import Sidebar from "../Sidebar";
 import Searchbar from "../Searchbar";
 import Contact from "../Contact";
+import Conversation from "../Conversations/Conversation";
 
 const Chat = () => {
   return (
@@ -63,7 +64,9 @@ const Chat = () => {
         <Contact />
       </div>
 
-      <div className="chat_area">Conversations</div>
+      <div className="chat_area">
+        <Conversation />
+      </div>
     </div>
   );
 };
