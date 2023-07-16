@@ -8,12 +8,14 @@
   height: 100vh;
   padding-left: 20px;
   padding-right: -70px;
+  border-right: 1px solid gray;
 }
 
 .chat_list {
   width: 30%;
-  background-color: aqua;
+  background-color: white;
   height: 100vh;
+  border-right: 1px solid gray;
 
   
 
@@ -25,4 +27,12 @@
 }
 .chathead{
   justify-content: space-between;
+}
+.searchInput {
+  font-size: 20px; /* Increase the font size */
+  margin-left: 50px;
+  width: 300px; /* Adjust the width */
+  height: 40px; /* Adjust the height */
+  /* Add any other necessary styles */
+  display: flex;
 }

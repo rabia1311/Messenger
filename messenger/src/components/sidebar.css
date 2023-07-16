@@ -1,0 +1,58 @@
+.search {
+    flex: 1;
+    border-right: 1px solid black;
+  
+    .navbar {
+      display: flex;
+      align-items: center;
+      height: 50px;
+      padding: 10px;
+      justify-content: space-between;
+  
+      .pogo {
+        font-weight: bold;
+      }
+  
+      .user {
+        display: flex;
+        gap: 10px;
+      }
+  
+      .search {
+        border-bottom: 1px solid gray;
+  
+        .searchform {
+            padding: 10px;
+          input {
+            background-color: transparent;
+          }
+        }
+      }
+    }
+
+    .userchat{
+        display: flex;
+        align-items: center;
+        padding: 100px;
+    
+  .img{
+    width: 50%;
+    height: 50%;
+    border-radius: 50%;
+    border-bottom: 1px solid gray;
+  }
+   .divider{
+    border-bottom: 1px solid gray;
+    margin-top: 5px;
+   }
+  }}
+ 
+
+  .userchat-container {
+    margin-top: 30px;
+
+    &:hover{
+        background-color: gainsboro;
+    }
+  }
+  

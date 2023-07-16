@@ -7,8 +7,9 @@ import StarBorderPurple500OutlinedIcon from "@mui/icons-material/StarBorderPurpl
 import Inventory2OutlinedIcon from "@mui/icons-material/Inventory2Outlined";
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
-import GroupAddOutlinedIcon from "@mui/icons-material/GroupAddOutlined";
-import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
+
+import Sidebar from "../Sidebar";
+import Searchbar from "../Searchbar";
 
 const Chat = () => {
   return (
@@ -57,11 +58,10 @@ const Chat = () => {
         </div>
       </div>
       <div className="chat_list">
-        <h2 className="chathead">
-          Chats <GroupAddOutlinedIcon />
-          <AddCircleOutlineOutlinedIcon />
-        </h2>
+        <Sidebar />
+        <Searchbar />
       </div>
+
       <div className="chat_area">Conversations</div>
     </div>
   );
