@@ -2,6 +2,9 @@
     background-color: beige;
     padding: 10px;
     height: calc(100%-160px);
+
+
+  
 }
 .input{
     height: 50px;
@@ -34,5 +37,21 @@
     cursor: pointer;
   }
 }
-    
+.message{
+    display: flex;
+    gap: 20px;
+
+    .messageinfo img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+      .messagecontent img {
+        width: 50%;
+        border-radius: 10px;
+      }
+            
+}
+
 }
