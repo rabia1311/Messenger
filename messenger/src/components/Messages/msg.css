@@ -1,0 +1,38 @@
+.messages{
+    background-color: beige;
+    padding: 10px;
+    height: calc(100%-160px);
+}
+.input{
+    height: 50px;
+    background-color:whitesmoke;
+    padding: 10px;
+    margin-top: 354px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    input{
+        width: 100%;
+        outline: none;
+        border: none;
+        color: black;
+        font-size: 18px;
+    }
+    &::placeholder{
+        color: lightgray;
+    }
+
+.send{
+    display: flex;
+  align-items: center;
+  gap: 10px;
+
+
+  img{
+    height: 24px;
+    cursor: pointer;
+  }
+}
+    
+}

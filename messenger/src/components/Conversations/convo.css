@@ -1,0 +1,14 @@
+.convoinfo{
+    height: 50px;
+    background: whitesmoke;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    color: black;
+}
+.convoicons{
+    display: flex;
+    gap: 10px;
+    cursor: pointer;
+}
