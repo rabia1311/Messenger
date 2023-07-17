@@ -10,7 +10,8 @@ const Chatmsg = () => {
           alt=""
           className="messageinFo"
         />
-        <span>1.35PM</span>
+        <h4>Townsend Seary</h4>
+        <span className="span">1.35PM</span>
       </div>
       <div className="messagecontent">
         <p>Hello how are you ? </p>

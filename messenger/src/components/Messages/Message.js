@@ -10,9 +10,8 @@ const Message = () => {
       <Chatmsg />
 
       <Chatmsg />
-
       <Chatmsg />
-
+      <Chatmsg />
       <Chatmsg />
     </div>
   );
