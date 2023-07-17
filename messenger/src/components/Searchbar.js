@@ -25,11 +25,15 @@ const Searchbar = () => {
                   flex: 1,
                   border: "none",
                   width: "300px",
-                  color: "whitesmoke",
+                  color: "black",
                   height: "40px",
                   outline: "none",
                   paddingLeft: "6px",
+                  boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
+                  borderRadius: "4px",
+                  transition: "box-shadow 0.3s ease",
                 }}
+                className="search-input"
               />
             </div>
           </div>
