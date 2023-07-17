@@ -1,6 +1,7 @@
 import React from "react";
 import "../components/Messages/msg.css";
 import "../components/chatmsg.css";
+import dataArray from "../Data/Data";
 const Chatmsg = () => {
   return (
     <div className="message-owner">
