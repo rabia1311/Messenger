@@ -13,9 +13,19 @@
 .messageinfo{
     align-items: center;
     display: flex;
+    margin-left: 69%;
 }
 
 .messagecontent{
     overflow-y: auto;
   max-height: 200px;
+  gap: 10px;
+  align-items: flex-end;
+}
+.ptag{
+    background-color: lightgray;
+    padding: 16px 16px 16px;
+    width: 35%;
+    border-radius: 0px 10px;
+    margin-left: 52%;
 }

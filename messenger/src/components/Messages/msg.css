@@ -1,5 +1,5 @@
 .messages{
-    background-color: beige;
+    background-color: white;
     padding: 10px;
     height: calc(100%-160px);
     overflow-y: auto;
@@ -38,12 +38,15 @@
     cursor: pointer;
   }
 }
-.message{
+.message-owner{
     display: flex;
-    flex-direction: column;
     color:lightgray;
     gap: 20px;
     overflow: scroll;
+
+  
+        flex-direction: row-reverse;
+    
 
     .messageinfo img {
         width: 40px;

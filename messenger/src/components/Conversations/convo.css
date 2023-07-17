@@ -12,3 +12,9 @@
     gap: 10px;
     cursor: pointer;
 }
+
+.imghead{
+    width: 17%;
+    border-radius: 50%;
+    margin-top: 9px;
+}
