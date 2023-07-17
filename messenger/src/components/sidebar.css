@@ -21,11 +21,7 @@
       .search {
         border-bottom: 1px solid gray;
   
-        .searchform {
-            padding: 10px;
-          input {
-            background-color: transparent;
-          }
+       
         }
       }
     }
@@ -45,7 +41,7 @@
     border-bottom: 1px solid gray;
     margin-top: 5px;
    }
-  }}
+  }
  
 
   .userchat-container {
@@ -55,4 +51,6 @@
         background-color: gainsboro;
     }
   }
-  
+  .searchform{
+    width: 70px;
+  }
