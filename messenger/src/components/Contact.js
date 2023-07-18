@@ -3,6 +3,11 @@ import "../components/contact.css";
 import dataArray from "../Data/Data";
 
 const Contact = () => {
+  const handleNameClick = (name) => {
+    console.log("Clicked name:", name);
+    localStorage.setItem("clickedName", name);
+  };
+
   return (
     <div className="chats">
       {dataArray.map((data, index) => (
@@ -19,7 +24,7 @@ const Contact = () => {
           />
 
           <div className="userchatinfo">
-            <span>{data.name}</span>
+            <span onClick={() => handleNameClick(data.name)}>{data.name}</span>
             <p>Whats up? How are you?</p>
             <hr className="divider" />
           </div>
