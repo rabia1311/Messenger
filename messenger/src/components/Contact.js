@@ -6,6 +6,7 @@ const Contact = () => {
   const handleNameClick = (name) => {
     console.log("Clicked name:", name);
     localStorage.setItem("clickedName", name);
+    window.location.reload();
   };
 
   return (
