@@ -1,16 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import "../components/Messages/msg.css";
 import SendIcon from "@mui/icons-material/Send";
 import SentimentSatisfiedAltIcon from "@mui/icons-material/SentimentSatisfiedAlt";
 import attach from "../images/attach.png";
-import { useState } from "react";
 
 const Input = () => {
-  const [message, setMessage] = useState();
+  const [message, setMessage] = useState("");
+  const [isSent, setIsSent] = useState(false);
 
   const handleSend = () => {
     console.log(message);
-
+    setIsSent(true);
     setMessage("");
   };
 
@@ -44,11 +44,12 @@ const Input = () => {
         <label htmlFor="file">
           <img src="" alt="" />
         </label>
-        <button className="sendicon">
-          {" "}
-          <SendIcon onClick={handleSend} />
+        <button className="sendicon" onClick={handleSend}>
+          <SendIcon />
         </button>
       </div>
+      {/* Display the typed message only after sending */}
+      {isSent && <p>Typed Message: {message}</p>}
     </div>
   );
 };
