@@ -3,9 +3,10 @@ import "../components/contact.css";
 import dataArray from "../Data/Data";
 
 const Contact = () => {
-  const handleNameClick = (name) => {
+  const handleNameClick = (name, image) => {
     console.log("Clicked name:", name);
     localStorage.setItem("clickedName", name);
+    localStorage.setItem("clickedImage", image);
     window.location.reload();
   };
 
@@ -25,7 +26,9 @@ const Contact = () => {
           />
 
           <div className="userchatinfo">
-            <span onClick={() => handleNameClick(data.name)}>{data.name}</span>
+            <span onClick={() => handleNameClick(data.name, data.image)}>
+              {data.name}
+            </span>
             <p>Whats up? How are you?</p>
             <hr className="divider" />
           </div>
