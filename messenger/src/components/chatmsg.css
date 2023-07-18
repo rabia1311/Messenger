@@ -23,9 +23,24 @@
   align-items: flex-end;
 }
 .ptag{
-    background-color: lightgray;
+    background-color: blue;
+    color: white;
     padding: 16px 16px 16px;
     width: 35%;
     border-radius: 0px 10px;
     margin-left: 52%;
+}
+
+.paragraph{
+    background-color: antiquewhite;
+    color: black;
+    padding: 16px 16px 16px;
+    width: 35%;
+    border-radius: 0px 10px;
+    margin-left: 5%
+}
+.messageinfooo{
+    align-items: center;
+    display: flex;
+    margin-left: 9%;
 }
