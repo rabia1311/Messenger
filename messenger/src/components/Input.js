@@ -3,7 +3,21 @@ import "../components/Messages/msg.css";
 import SendIcon from "@mui/icons-material/Send";
 import SentimentSatisfiedAltIcon from "@mui/icons-material/SentimentSatisfiedAlt";
 import attach from "../images/attach.png";
+import { useState } from "react";
+
 const Input = () => {
+  const [message, setMessage] = useState();
+
+  const handleSend = () => {
+    console.log(message);
+
+    setMessage("");
+  };
+
+  const handleChange = (event) => {
+    setMessage(event.target.value);
+  };
+
   return (
     <div className="input">
       <SentimentSatisfiedAltIcon />
@@ -18,6 +32,8 @@ const Input = () => {
           outline: "none",
           height: "80%",
         }}
+        value={message}
+        onChange={handleChange}
       />
       <div
         className="send"
@@ -30,7 +46,7 @@ const Input = () => {
         </label>
         <button className="sendicon">
           {" "}
-          <SendIcon />
+          <SendIcon onClick={handleSend} />
         </button>
       </div>
     </div>
