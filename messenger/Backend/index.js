@@ -6,6 +6,7 @@ const port = 4000;
 app.use(cors());
 
 const mongoDB = require("./db");
+const { collection } = require("../Backend/Models/AddUser");
 mongoDB();
 
 app.use(cors());
