@@ -2,12 +2,12 @@ import React from "react";
 import Chatmsg from "../Chatmsg";
 import "../Messages/msg.css";
 import Reply from "../Reply";
-const Message = () => {
+const Message = ({ receivedMessage }) => {
+  console.log(receivedMessage);
   return (
     <div className="messages">
-      <Chatmsg />
       <Reply />
-      <Chatmsg />
+      <Chatmsg message={receivedMessage} />
     </div>
   );
 };

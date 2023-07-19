@@ -27,6 +27,12 @@ const Conversation = () => {
   const [contactName, setContactName] = useState("");
   const [contactImage, setContactImage] = useState("");
 
+  const [message, setMessage] = useState("");
+
+  const handleReceiveMessage = (newMessage) => {
+    setMessage(newMessage);
+  };
+  console.log(message);
   useEffect(() => {
     const storedName = localStorage.getItem("clickedName");
     const storedImage = localStorage.getItem("clickedImage");
@@ -67,8 +73,8 @@ const Conversation = () => {
           <MoreHorizIcon />
         </div>
       </div>
-      <Message />
-      <Input />
+      <Message receivedMessage={message} />
+      <Input onMessageReceive={handleReceiveMessage} />
     </div>
   );
 };

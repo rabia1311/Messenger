@@ -4,12 +4,17 @@ import SendIcon from "@mui/icons-material/Send";
 import SentimentSatisfiedAltIcon from "@mui/icons-material/SentimentSatisfiedAlt";
 import attach from "../images/attach.png";
 import { useState } from "react";
-const Input = () => {
+const Input = ({ onMessageReceive }) => {
   const [message, setMessage] = useState("");
 
   const handleSend = () => {
-    console.log(message);
-    setMessage("");
+    if (message.trim() !== "") {
+      localStorage.setItem(Date.now().toString(), message);
+
+      setMessage("");
+      onMessageReceive(message);
+      console.log(message);
+    }
   };
 
   const handleChange = (event) => {
