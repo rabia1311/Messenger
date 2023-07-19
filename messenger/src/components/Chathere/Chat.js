@@ -15,49 +15,7 @@ import Conversation from "../Conversations/Conversation";
 
 const Chat = () => {
   return (
-    <div className="flex_screen">
-      <div className="left-symbol">
-        <div>
-          {" "}
-          <WhatsAppIcon fontSize="large" style={{ marginBottom: "80px" }} />
-        </div>
-        <div>
-          <MapsUgcOutlinedIcon
-            fontSize="large"
-            style={{ marginBottom: "10px" }}
-          />
-        </div>
-        <div>
-          <PermIdentityOutlinedIcon
-            fontSize="large"
-            style={{ marginBottom: "10px" }}
-          />
-        </div>
-        <div>
-          <StarBorderPurple500OutlinedIcon
-            fontSize="large"
-            style={{ marginBottom: "10px" }}
-          />
-        </div>
-        <div>
-          <Inventory2OutlinedIcon
-            fontSize="large"
-            style={{ marginBottom: "160px" }}
-          />
-        </div>
-        <div>
-          <DarkModeOutlinedIcon
-            fontSize="large"
-            style={{ marginBottom: "10px" }}
-          />
-        </div>
-        <div>
-          <AccountCircleOutlinedIcon
-            fontSize="large"
-            style={{ marginBottom: "10px" }}
-          />
-        </div>
-      </div>
+    <div className="chat-container">
       <div className="chat_list">
         <Sidebar />
         <Searchbar />

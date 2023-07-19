@@ -18,7 +18,7 @@
 
 .messagecontent{
     
-  max-height: 200px;
+  max-height: 400px;
   gap: 10px;
   align-items: flex-end;
 }

@@ -67,11 +67,7 @@ const Conversation = () => {
           </div>
         </span>
 
-        <div className="convoicons">
-          <WifiCalling3Icon onClick={handleCall} />
-          <VideocamIcon />
-          <MoreHorizIcon />
-        </div>
+        <div className="convoicons"></div>
       </div>
       <Message receivedMessage={message} />
       <Input onMessageReceive={handleReceiveMessage} />

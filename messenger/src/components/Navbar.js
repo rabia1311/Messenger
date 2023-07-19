@@ -1,6 +1,4 @@
 import React from "react";
-import GroupAddOutlinedIcon from "@mui/icons-material/GroupAddOutlined";
-import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
 
 const Navbar = () => {
   return (
@@ -15,12 +13,8 @@ const Navbar = () => {
         className="user"
         style={{ marginTop: "24px", justifyContent: "space-between" }}
       >
-        <span>
-          <GroupAddOutlinedIcon />
-        </span>
-        <span>
-          <AddCircleOutlineOutlinedIcon />
-        </span>
+        <span></span>
+        <span></span>
       </div>
     </div>
   );

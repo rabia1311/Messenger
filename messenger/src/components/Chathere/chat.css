@@ -23,8 +23,11 @@
 }
 
 .chat_area {
-  width: 60%;
   height: 100vh;
+ 
+  flex: 2;
+  padding: 16px;
+  box-sizing: border-box;
 }
 .chathead{
   justify-content: space-between;
@@ -40,4 +43,11 @@
 .chat_list {
   height: 100vh; /* Set the desired height for the chat list container */
   overflow-y: scroll; /* Enable vertical scrolling */
+  flex: 1;
+  padding: 16px;
+  box-sizing: border-box;
+}
+.chat-container {
+  display: flex;
+  height: 80vh; /* Adjust this value based on your specific layout requirements */
 }
