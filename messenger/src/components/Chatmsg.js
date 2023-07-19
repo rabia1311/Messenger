@@ -3,11 +3,17 @@ import "../components/Messages/msg.css";
 import "../components/chatmsg.css";
 import dataArray from "../Data/Data";
 import { useState, useEffect } from "react";
+
+import { useRef } from "react";
+
 const Chatmsg = ({ message }) => {
   const [contactName, setContactName] = useState("");
   const [contactImage, setContactImage] = useState("");
 
   const [messages, setMessages] = useState([]);
+
+  const messagesEndRef = useRef(null);
+
   useEffect(() => {
     const storedName = localStorage.getItem("clickedName");
     const storedImage = localStorage.getItem("clickedImage");
@@ -28,6 +34,11 @@ const Chatmsg = ({ message }) => {
     }
   }, [message]);
 
+  useEffect(() => {
+    // Scroll to the bottom of the message content whenever messages change
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
+
   return (
     <div className="message-owner">
       <div className="messageinfo">
@@ -41,6 +52,7 @@ const Chatmsg = ({ message }) => {
             {msg}
           </p>
         ))}
+        <div ref={messagesEndRef} />
       </div>
     </div>
   );
