@@ -20,6 +20,12 @@ app.use(
   })
 );
 
+const AddUserRouter = require("../Backend/Routes/AddUserRoute");
+const path = require("path");
+app.use("/Userimg", express.static("Userimg"));
+
+app.use("/chat", AddUserRouter);
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });

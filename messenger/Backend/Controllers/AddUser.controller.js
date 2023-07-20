@@ -2,7 +2,7 @@ const AddUser = require("../Models/AddUser");
 const createAddUser = async (req, res) => {
   try {
     const image = req.file?.filename;
-    const newAddUser = new Restaurant({
+    const newAddUser = new AddUser({
       ...req.body,
       image,
     });
