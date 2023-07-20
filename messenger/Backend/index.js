@@ -5,6 +5,7 @@ const app = express();
 const port = 4000;
 app.use(cors());
 
+//mongoDB collection stored
 const mongoDB = require("./db");
 const { collection } = require("../Backend/Models/AddUser");
 mongoDB();
@@ -22,7 +23,9 @@ app.use(
 
 const AddUserRouter = require("../Backend/Routes/AddUserRoute");
 const SendMessageRouter = require("../Backend/Routes/SendMessageRoute");
+
 const path = require("path");
+//saving images in ----
 app.use("/Userimg", express.static("Userimg"));
 app.use("/Images", express.static("Images"));
 
