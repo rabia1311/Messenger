@@ -21,10 +21,13 @@ app.use(
 );
 
 const AddUserRouter = require("../Backend/Routes/AddUserRoute");
+const SendMessageRouter = require("../Backend/Routes/SendMessageRoute");
 const path = require("path");
 app.use("/Userimg", express.static("Userimg"));
+app.use("/Images", express.static("Images"));
 
 app.use("/chat", AddUserRouter);
+app.use("/chat", SendMessageRouter);
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
