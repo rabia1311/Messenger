@@ -23,6 +23,21 @@ const createSendMessage = async (req, res) => {
     });
   }
 };
+
+// To view the messages sent by the sender
+// We use GET METHOD
+
+const getSendMessage = async (req, res) => {
+  try {
+    const sendmsg = await SendMessage.find(); // Retrieve plain JavaScript objects instead of Mongoose documents
+
+    res.json(sendmsg);
+  } catch (error) {
+    res.status(500).json({ error: "Failed to send the msg" });
+  }
+};
+
 module.exports = {
   createSendMessage,
+  getSendMessage,
 };

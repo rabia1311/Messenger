@@ -12,9 +12,13 @@ const upload = multer({
   storage: Storage,
 });
 
-const { createSendMessage } = require("../Controllers/SendMessage.controller");
+const {
+  createSendMessage,
+  getSendMessage,
+} = require("../Controllers/SendMessage.controller");
 const SendMessage = require("../Models/SendMessage");
 
 router.post("/sendmsg", upload.single("image"), createSendMessage);
+router.get("/sendmsg", getSendMessage);
 
 module.exports = router;
