@@ -1,4 +1,6 @@
 const AddUser = require("../Models/AddUser");
+
+// TO ADD USER WE WILL POST
 const createAddUser = async (req, res) => {
   try {
     const image = req.file?.filename;
@@ -20,6 +22,20 @@ const createAddUser = async (req, res) => {
     });
   }
 };
+
+// TO SEE USER LIST WE ARE USING GET.
+
+const getAddUser = async (req, res) => {
+  try {
+    const adduser = await AddUser.find(); // Retrieve plain JavaScript objects instead of Mongoose documents
+
+    res.json(adduser);
+  } catch (error) {
+    res.status(500).json({ error: "Failed to fetch The user" });
+  }
+};
+
 module.exports = {
   createAddUser,
+  getAddUser,
 };
