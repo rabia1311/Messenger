@@ -1,4 +1,7 @@
 import * as React from "react";
+import { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import PersonAddAltIcon from "@mui/icons-material/PersonAddAlt";
 import {
   Button,
@@ -34,14 +37,55 @@ const Navbar = () => {
   const handleStatusChange = (event) => setStatus(event.target.value);
   const handleImageChange = (event) => setImage(event.target.files[0]);
 
-  const handleSubmit = () => {
-    // Process form data (name, status, and image) here as needed.
-    // For example, you can send this data to a server using fetch or perform any other action.
-    console.log("Name:", name);
-    console.log("Status:", status);
-    console.log("Image:", image);
-    handleClose();
+  const [adduser, setAdduser] = useState({
+    name: "",
+    status: "",
+    image: "",
+  });
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData();
+    formData.append("image", selectedFile);
+    formData.append("name", adduser.name);
+    formData.append("status", adduser.status);
+
+    try {
+      const response = await fetch("http://localhost:4000/chat/adduser", {
+        method: "POST",
+
+        body: formData,
+      });
+      const json = await response.json();
+      console.log(json);
+      if (!json.success) {
+        toast.error("Enter valid credentials");
+      } else {
+        toast.success(" New person added successfully");
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
+
+  const handleChange = (event) => {
+    setAdduser({
+      ...adduser,
+      [event.target.name]: event.target.value,
+    });
+  };
+  console.log(adduser);
+
+  //Code for image upload
+
+  const [selectedFile, setSelectedFile] = useState(null);
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    setSelectedFile(file);
+  };
+
+  console.log(selectedFile);
 
   return (
     <div
@@ -70,39 +114,43 @@ const Navbar = () => {
           <Typography id="modal-modal-title" variant="h6" component="h2">
             Add New User
           </Typography>
-          <form>
+          <form onSubmit={handleSubmit}>
             <TextField
+              label="name"
               id="name"
-              label="Name"
+              name="name"
               variant="outlined"
               fullWidth
-              value={name}
-              onChange={handleNameChange}
+              value={adduser.name}
+              onChange={handleChange}
               sx={{ mt: 2 }}
+              required
             />
             <TextField
+              label="status"
               id="status"
-              label="Status"
+              name="status"
               variant="outlined"
               fullWidth
-              value={status}
-              onChange={handleStatusChange}
+              value={adduser.status}
+              onChange={handleChange}
               sx={{ mt: 2 }}
+              required
             />
-            <InputLabel htmlFor="image" sx={{ mt: 2 }}>
-              Image
-            </InputLabel>
-            <input
+            <TextField
+              label="image"
+              name="image"
+              value={adduser.image}
+              onChange={handleFileChange}
+              variant="outlined"
+              margin="normal"
               type="file"
-              id="image"
-              accept="image/*"
-              onChange={handleImageChange}
-              sx={{ display: "block" }}
             />
-            <Button variant="contained" onClick={handleSubmit} sx={{ mt: 2 }}>
+            <Button variant="contained" type="submit">
               Submit
             </Button>
           </form>
+          <ToastContainer />
         </Box>
       </Modal>
     </div>
