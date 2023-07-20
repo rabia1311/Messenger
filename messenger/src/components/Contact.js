@@ -1,8 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import "../components/contact.css";
-import dataArray from "../Data/Data";
 
 const Contact = () => {
+  const [userChats, setUserChats] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:4000/chat/adduser")
+      .then((response) => {
+        setUserChats(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, []);
+
   const handleNameClick = (name, image) => {
     console.log("Clicked name:", name);
     localStorage.setItem("clickedName", name);
@@ -12,11 +25,11 @@ const Contact = () => {
 
   return (
     <div className="chats">
-      {dataArray.map((data, index) => (
+      {userChats.map((chat, index) => (
         <div className="userchat-container" key={index}>
           <img
             className="img"
-            src={data.image}
+            src={`http://localhost:4000/Userimg/${chat.image}`}
             alt="User"
             style={{
               width: "50px",
@@ -26,10 +39,10 @@ const Contact = () => {
           />
 
           <div className="userchatinfo">
-            <span onClick={() => handleNameClick(data.name, data.image)}>
-              {data.name}
+            <span onClick={() => handleNameClick(chat.name, chat.image)}>
+              {chat.name}
             </span>
-            <p>Whats up? How are you?</p>
+            <p>{chat.status}</p>
             <hr className="divider" />
           </div>
         </div>
