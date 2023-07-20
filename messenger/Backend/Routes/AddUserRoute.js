@@ -14,8 +14,10 @@ const upload = multer({
 const {
   createAddUser,
   getAddUser,
+  getAddUserid,
 } = require("../Controllers/AddUser.controller");
 const AddUser = require("../Models/AddUser");
 router.post("/adduser", upload.single("image"), createAddUser);
 router.get("/adduser", getAddUser);
+router.get("/adduser/:id", getAddUserid);
 module.exports = router;

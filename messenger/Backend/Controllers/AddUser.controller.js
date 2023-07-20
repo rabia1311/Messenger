@@ -35,7 +35,28 @@ const getAddUser = async (req, res) => {
   }
 };
 
+//Get User by id.
+
+const getAddUserid = (req, res, next) => {
+  const adduserId = req.params.id;
+  AddUser.findById(adduserId)
+    .then((adduser) => {
+      if (!adduser) {
+        return res.status(404).json({ error: "User not found" });
+      }
+
+      res.status(200).json({ adduser });
+    })
+    .catch((err) => {
+      console.log(err);
+      res
+        .status(500)
+        .json({ error: "An error occurred while fetching the user " });
+    });
+};
+
 module.exports = {
   createAddUser,
   getAddUser,
+  getAddUserid,
 };
