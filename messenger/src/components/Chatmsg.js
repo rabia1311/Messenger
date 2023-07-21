@@ -44,7 +44,7 @@ const Chatmsg = ({ message }) => {
       <div className="messageinfo">
         <img src={contactImage} alt="" className="messageinFo" />
         <h4>{contactName}</h4>
-        <span className="span">1.35PM</span>
+        <span className="span">just now</span>
       </div>
       <div className="messagecontent">
         {messages.map((msg, index) => (
