@@ -1,19 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import "../components/Messages/msg.css";
 import SendIcon from "@mui/icons-material/Send";
 import SentimentSatisfiedAltIcon from "@mui/icons-material/SentimentSatisfiedAlt";
 import attach from "../images/attach.png";
-import { useState } from "react";
+
 const Input = ({ onMessageReceive }) => {
   const [message, setMessage] = useState("");
 
   const handleSend = () => {
     if (message.trim() !== "") {
-      localStorage.setItem(Date.now().toString(), message);
+      // Create a new FormData instance
+      const formData = new FormData();
+      formData.append("message", message);
 
-      setMessage("");
-      onMessageReceive(message);
-      console.log(message);
+      // Save the message to the server using the POST method with FormData
+      fetch("http://localhost:4000/chat/sendmsg", {
+        method: "POST",
+        body: formData,
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("Message sent successfully:", data);
+          localStorage.setItem(Date.now().toString(), message);
+          setMessage("");
+          onMessageReceive(message);
+        })
+        .catch((error) => {
+          console.error("Error sending message:", error);
+        });
     }
   };
 
