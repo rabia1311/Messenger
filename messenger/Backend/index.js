@@ -2,8 +2,6 @@ const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const app = express();
-const http = require("http").createServer(app); // Create HTTP server
-const io = require("socket.io")(http); // Create socket.io server
 const port = 4000;
 app.use(cors());
 
@@ -34,24 +32,6 @@ app.use("/Images", express.static("Images"));
 app.use("/chat", AddUserRouter);
 app.use("/chat", SendMessageRouter);
 
-// Set up a connection event for new WebSocket connections
-io.on("connection", (socket) => {
-  console.log("A user connected");
-
-  // Set up events for handling messages
-  socket.on("message", (data) => {
-    console.log("Received message:", data);
-
-    // Broadcast the received message to all connected clients
-    io.emit("message", data);
-  });
-
-  // Set up a disconnect event
-  socket.on("disconnect", () => {
-    console.log("A user disconnected");
-  });
-});
-
-http.listen(port, () => {
+app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
