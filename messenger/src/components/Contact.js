@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "../components/contact.css";
 
-const Contact = () => {
+const Contact = ({ onNameClick }) => {
   const [userChats, setUserChats] = useState([]);
 
   useEffect(() => {
@@ -17,10 +17,10 @@ const Contact = () => {
   }, []);
 
   const handleNameClick = (name, image) => {
+    // Call the prop function to send the name and image to the parent component
+    onNameClick(name, image);
     console.log("Clicked name:", name);
-    localStorage.setItem("clickedName", name);
-    localStorage.setItem("clickedImage", image);
-    window.location.reload();
+    console.log("Clicked image:", image);
   };
 
   return (

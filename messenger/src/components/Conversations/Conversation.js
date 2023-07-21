@@ -8,6 +8,7 @@ import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import Message from "../Messages/Message";
 import Input from "../Input";
 import "../Conversations/convo.css";
+
 const style = {
   position: "absolute",
   top: "50%",
@@ -22,28 +23,19 @@ const style = {
   pb: 3,
 };
 
-const Conversation = () => {
+const Conversation = ({ contactName, contactImage }) => {
   const [open, setOpen] = useState(false);
-  const [contactName, setContactName] = useState("");
-  const [contactImage, setContactImage] = useState("");
-
   const [message, setMessage] = useState("");
 
+  console.log(contactImage);
+  console.log(contactName);
   const handleReceiveMessage = (newMessage) => {
     setMessage(newMessage);
   };
   console.log(message);
+
   useEffect(() => {
-    const storedName = localStorage.getItem("clickedName");
-    const storedImage = localStorage.getItem("clickedImage");
-    if (storedName) {
-      setContactName(storedName);
-    }
-    if (storedImage) {
-      setContactImage(storedImage);
-    }
-    localStorage.getItem("clickedName");
-    localStorage.getItem("clickedImage");
+    // No need to fetch the name and image from localStorage anymore
   }, []);
 
   const handleCall = () => {
@@ -58,7 +50,7 @@ const Conversation = () => {
     <div className="convo">
       <div className="convoinfo">
         <span style={{ display: "flex", alignItems: "center" }}>
-          <img className="imghead" src={contactImage} />
+          <img className="imghead" src={contactImage} alt="Contact" />
           <div style={{ marginLeft: "10px" }}>
             <h2 className="h2" style={{ marginBottom: "0" }}>
               {contactName}
