@@ -1,31 +1,25 @@
 import React from "react";
 import "../components/Messages/msg.css";
 import "../components/chatmsg.css";
-import dataArray from "../Data/Data";
 import { useState, useEffect } from "react";
-
 import { useRef } from "react";
 
-const Chatmsg = ({ message }) => {
+const Chatmsg = ({ message, chatConversation }) => {
   const [contactName, setContactName] = useState("");
   const [contactImage, setContactImage] = useState("");
-
   const [messages, setMessages] = useState([]);
 
   const messagesEndRef = useRef(null);
 
   useEffect(() => {
-    const storedName = localStorage.getItem("clickedName");
-    const storedImage = localStorage.getItem("clickedImage");
-    if (storedName) {
-      setContactName(storedName);
+    // Extract and set the conversation details from the chatConversation prop
+    if (chatConversation) {
+      const { contactName, contactImage, messages } = chatConversation;
+      setContactName(contactName);
+      setContactImage(contactImage);
+      setMessages(messages);
     }
-    if (storedImage) {
-      setContactImage(storedImage);
-    }
-    localStorage.getItem("clickedName");
-    localStorage.getItem("clickedImage");
-  }, []);
+  }, [chatConversation]);
 
   useEffect(() => {
     // Whenever a new message is received, add it to the messages array
@@ -47,11 +41,12 @@ const Chatmsg = ({ message }) => {
         <span className="span">just now</span>
       </div>
       <div className="messagecontent">
-        {messages.map((msg, index) => (
-          <p key={index} className="ptag">
-            {msg}
-          </p>
-        ))}
+        {chatConversation &&
+          chatConversation.map((msg, index) => (
+            <p key={index} className="ptag">
+              {msg.content}
+            </p>
+          ))}
         <div ref={messagesEndRef} />
       </div>
     </div>

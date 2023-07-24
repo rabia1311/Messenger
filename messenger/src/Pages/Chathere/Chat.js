@@ -13,24 +13,37 @@ import Searchbar from "../../components/Searchbar";
 import Contact from "../../components/Contact";
 import Conversation from "../../components/Conversations/Conversation";
 
-const Chat = () => {
+const Chat = ({ onChatConversation }) => {
   const [selectedUser, setSelectedUser] = useState({ name: "", image: "" });
+  const [chatConversation, setChatConversation] = useState(null);
   const handleUserSelection = (name, image) => {
     setSelectedUser({ name, image });
   };
   console.log(selectedUser);
+
+  // Callback function to update the 'chatConversation' state
+
+  const handleChatConversation = (data) => {
+    setChatConversation(data);
+  };
+  console.log(chatConversation);
+
   return (
     <div className="chat-container">
       <div className="chat_list">
         <Sidebar />
         <Searchbar />
-        <Contact onNameClick={handleUserSelection} />
+        <Contact
+          onNameClick={handleUserSelection}
+          onChatConversation={handleChatConversation}
+        />
       </div>
 
       <div className="chat_area">
         <Conversation
           contactName={selectedUser.name}
           contactImage={`http://localhost:4000/Userimg/${selectedUser.image}`}
+          chatConversation={chatConversation}
         />
       </div>
     </div>

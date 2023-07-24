@@ -23,10 +23,10 @@ const style = {
   pb: 3,
 };
 
-const Conversation = ({ contactName, contactImage }) => {
+const Conversation = ({ contactName, contactImage, chatConversation }) => {
   const [open, setOpen] = useState(false);
   const [message, setMessage] = useState("");
-
+  console.log(chatConversation);
   console.log(contactImage);
   console.log(contactName);
   const handleReceiveMessage = (newMessage) => {
@@ -61,7 +61,7 @@ const Conversation = ({ contactName, contactImage }) => {
 
         <div className="convoicons"></div>
       </div>
-      <Message receivedMessage={message} />
+      <Message receivedMessage={message} chatConversation={chatConversation} />
       <Input onMessageReceive={handleReceiveMessage} />
     </div>
   );

@@ -6,12 +6,12 @@ const SendMessageSchema = new Schema(
   {
     senderId: {
       type: Schema.Types.ObjectId,
-      default: "64ba6b4ac7455df39573f949", // Set the default sender ID
+      default: "64be2bee57905d1b5c496540", // Set the default sender ID
       ref: "AddUser", // Reference the AddUser model
     },
     recipientId: {
       type: Schema.Types.ObjectId,
-      required: true,
+
       ref: "AddUser", // Reference the AddUser model
     },
     content: {

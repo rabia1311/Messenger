@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "../components/contact.css";
 
-const Contact = ({ onNameClick }) => {
+const Contact = ({ onNameClick, onChatConversation }) => {
   const [userChats, setUserChats] = useState([]);
 
   useEffect(() => {
@@ -22,7 +22,8 @@ const Contact = ({ onNameClick }) => {
   }, [userChats]);
 
   // ... Rest of the code ...
-  const handleNameClick = (name, image, _id, userId, onNameClick) => {
+  // ... Rest of the code ...
+  const handleNameClick = (name, image, _id, userId) => {
     // Call the prop function to send the name, image, _id, and userId to the parent component
     onNameClick(name, image, _id, userId);
 
@@ -33,7 +34,7 @@ const Contact = ({ onNameClick }) => {
     // Check if _id is defined before making the query
     if (_id) {
       // Assuming senderId is the default sender's ID you want to use
-      const senderId = "64ba6b4ac7455df39573f949"; // Replace with the default sender's ID
+      const senderId = "64be2bee57905d1b5c496540"; // Replace with the default sender's ID
 
       // Fetch the chat conversation from the server based on _id and senderId
       axios
@@ -41,6 +42,7 @@ const Contact = ({ onNameClick }) => {
         .then((response) => {
           const chatConversation = response.data;
           console.log("Chat Conversation:", chatConversation);
+          onChatConversation(chatConversation);
         })
         .catch((error) =>
           console.error("Error fetching chat conversation:", error)
@@ -49,6 +51,7 @@ const Contact = ({ onNameClick }) => {
       console.error("_id is undefined. Cannot make the query.");
     }
   };
+  // ... Rest of the code ...
 
   return (
     <div className="chats">
