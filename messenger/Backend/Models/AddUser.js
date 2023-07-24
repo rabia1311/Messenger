@@ -1,24 +1,24 @@
 const mongoose = require("mongoose");
+const { Schema } = mongoose;
 
-const AddUserSchema = new mongoose.Schema(
+const AddUserSchema = new Schema(
   {
-    name: { type: String, required: true },
-    email: { type: String, unique: true, required: true },
-    password: { type: String, required: true },
-    pic: {
+    userId: {
       type: String,
       required: true,
-      default:
-        "https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg",
+      unique: true,
     },
-    isAdmin: {
-      type: Boolean,
+    name: {
+      type: String,
       required: true,
-      default: false,
+    },
+    status: {
+      type: String,
+      default: "active", // Set the default status as "active"
     },
   },
   {
-    timestamps: true, // Corrected typo in the option key name "timestamps"
+    timestamps: true,
   }
 );
 

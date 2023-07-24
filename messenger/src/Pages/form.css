@@ -1,0 +1,53 @@
+.app-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .home-container {
+    width: 400px;
+    border: 1px solid #ccc;
+    padding: 20px;
+  }
+  
+  .tabs {
+    display: flex;
+    margin-bottom: 20px;
+  }
+  
+  .tab {
+    cursor: pointer;
+    padding: 10px 20px;
+    border: 1px solid #ccc;
+    border-bottom: none;
+    background-color: #f9f9f9;
+  }
+  
+  .tab.active {
+    background-color: #fff;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .form-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-container input {
+    margin-bottom: 10px;
+    padding: 10px;
+  }
+  
+  .form-container button {
+    padding: 10px;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .form-container button:hover {
+    background-color: #45a049;
+  }
+  

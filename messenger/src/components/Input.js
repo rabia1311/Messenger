@@ -9,14 +9,13 @@ const Input = ({ onMessageReceive }) => {
 
   const handleSend = () => {
     if (message.trim() !== "") {
-      // Create a new FormData instance
-      const formData = new FormData();
-      formData.append("message", message);
-
-      // Save the message to the server using the POST method with FormData
+      // Save the message to the server using the POST method with JSON data
       fetch("http://localhost:4000/chat/sendmsg", {
         method: "POST",
-        body: formData,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ message }), // Convert the message to JSON format
       })
         .then((response) => response.json())
         .then((data) => {
@@ -62,7 +61,6 @@ const Input = ({ onMessageReceive }) => {
           <img src="" alt="" />
         </label>
         <button className="sendicon">
-          {" "}
           <SendIcon onClick={handleSend} />
         </button>
       </div>

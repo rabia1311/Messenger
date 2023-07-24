@@ -16,19 +16,35 @@ const Contact = ({ onNameClick }) => {
       });
   }, []);
 
-  const handleNameClick = (name, image, _id) => {
-    // Call the prop function to send the name and image to the parent component
-    onNameClick(name, image, _id);
+  useEffect(() => {
+    // Log the userChats data whenever it changes
+    console.log("userChats:", userChats);
+  }, [userChats]);
+
+  // ... Rest of the code ...
+  const handleNameClick = (name, image, _id, userId, onNameClick) => {
+    // Call the prop function to send the name, image, _id, and userId to the parent component
+    onNameClick(name, image, _id, userId);
+
     console.log("Clicked name:", name);
     console.log("Clicked image:", image);
+    console.log("User ID:", userId);
 
     // Check if _id is defined before making the query
     if (_id) {
-      // Fetch the user data from the server
-      fetch(`http://localhost:4000/chat/adduser/${_id}`)
-        .then((response) => response.json())
-        .then((data) => console.log("User Data:", _id))
-        .catch((error) => console.error("Error fetching user data:", error));
+      // Assuming senderId is the default sender's ID you want to use
+      const senderId = "64ba6b4ac7455df39573f949"; // Replace with the default sender's ID
+
+      // Fetch the chat conversation from the server based on _id and senderId
+      axios
+        .get(`http://localhost:4000/chat/sendmsg/${userId}`)
+        .then((response) => {
+          const chatConversation = response.data;
+          console.log("Chat Conversation:", chatConversation);
+        })
+        .catch((error) =>
+          console.error("Error fetching chat conversation:", error)
+        );
     } else {
       console.error("_id is undefined. Cannot make the query.");
     }
@@ -50,8 +66,17 @@ const Contact = ({ onNameClick }) => {
           />
 
           <div className="userchatinfo">
+            {/* Pass the arguments in the correct order */}
             <span
-              onClick={() => handleNameClick(chat.name, chat.image, chat._id)}
+              onClick={() =>
+                handleNameClick(
+                  chat.name,
+                  chat.image,
+                  chat._id,
+                  chat.userId,
+                  onNameClick
+                )
+              }
             >
               {chat.name}
             </span>
@@ -63,5 +88,4 @@ const Contact = ({ onNameClick }) => {
     </div>
   );
 };
-
 export default Contact;

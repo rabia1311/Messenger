@@ -36,8 +36,25 @@ const getSendMessage = async (req, res) => {
     res.status(500).json({ error: "Failed to send the msg" });
   }
 };
+// conversation by id.
+const getChatConversationByUserId = async (req, res) => {
+  try {
+    const { userId } = req.params;
+
+    // Fetch chat conversations where the provided userId matches either recipientUserId or senderUserId
+    const chatConversation = await SendMessage.find({
+      $or: [{ recipientId: userId }],
+    });
+
+    res.status(200).json(chatConversation);
+  } catch (error) {
+    console.error("Error fetching chat conversation:", error);
+    res.status(500).json({ error: "Error fetching chat conversation" });
+  }
+};
 
 module.exports = {
   createSendMessage,
   getSendMessage,
+  getChatConversationByUserId,
 };

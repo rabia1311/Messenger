@@ -1,5 +1,5 @@
 import React from "react";
-import "../Chathere/chat.css";
+import "./chat.css";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import MapsUgcOutlinedIcon from "@mui/icons-material/MapsUgcOutlined";
 import PermIdentityOutlinedIcon from "@mui/icons-material/PermIdentityOutlined";
@@ -8,10 +8,10 @@ import Inventory2OutlinedIcon from "@mui/icons-material/Inventory2Outlined";
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import { useState } from "react";
-import Sidebar from "../Sidebar";
-import Searchbar from "../Searchbar";
-import Contact from "../Contact";
-import Conversation from "../Conversations/Conversation";
+import Sidebar from "../../components/Sidebar";
+import Searchbar from "../../components/Searchbar";
+import Contact from "../../components/Contact";
+import Conversation from "../../components/Conversations/Conversation";
 
 const Chat = () => {
   const [selectedUser, setSelectedUser] = useState({ name: "", image: "" });

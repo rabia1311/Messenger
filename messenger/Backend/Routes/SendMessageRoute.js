@@ -15,10 +15,14 @@ const upload = multer({
 const {
   createSendMessage,
   getSendMessage,
+  getChatConversationByUserId,
 } = require("../Controllers/SendMessage.controller");
 const SendMessage = require("../Models/SendMessage");
 
 router.post("/sendmsg", upload.single("image"), createSendMessage);
 router.get("/sendmsg", getSendMessage);
+
+// New route to fetch chat conversation by user _id
+router.get("/sendmsg/:userId", getChatConversationByUserId);
 
 module.exports = router;
