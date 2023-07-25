@@ -16,6 +16,7 @@ const {
   createSendMessage,
   getSendMessage,
   getChatConversationByUserId,
+  createSendMessagebyid,
 } = require("../Controllers/SendMessage.controller");
 const SendMessage = require("../Models/SendMessage");
 
@@ -24,5 +25,6 @@ router.get("/sendmsg", getSendMessage);
 
 // New route to fetch chat conversation by user _id
 router.get("/sendmsg/:userId", getChatConversationByUserId);
+router.post("/sendmsg/:userId", upload.single("image"), createSendMessagebyid);
 
 module.exports = router;

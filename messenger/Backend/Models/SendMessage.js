@@ -16,7 +16,6 @@ const SendMessageSchema = new Schema(
     },
     content: {
       type: String,
-      trim: true,
     },
     image: {
       type: String,

@@ -10,7 +10,7 @@ const Input = ({ onMessageReceive }) => {
   const handleSend = () => {
     if (message.trim() !== "") {
       // Save the message to the server using the POST method with JSON data
-      fetch("http://localhost:4000/chat/sendmsg", {
+      fetch("http://localhost:4000/chat/sendmsg/${userId}", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

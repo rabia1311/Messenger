@@ -7,9 +7,10 @@ import { useRef } from "react";
 const Chatmsg = ({ message, chatConversation }) => {
   const [contactName, setContactName] = useState("");
   const [contactImage, setContactImage] = useState("");
-  const [messages, setMessages] = useState([]);
+  const [messages, setMessages] = useState([]); // Initialize as an empty array
 
   const messagesEndRef = useRef(null);
+  console.log(message);
 
   useEffect(() => {
     // Extract and set the conversation details from the chatConversation prop
@@ -20,13 +21,6 @@ const Chatmsg = ({ message, chatConversation }) => {
       setMessages(messages);
     }
   }, [chatConversation]);
-
-  useEffect(() => {
-    // Whenever a new message is received, add it to the messages array
-    if (message) {
-      setMessages((prevMessages) => [...prevMessages, message]);
-    }
-  }, [message]);
 
   useEffect(() => {
     // Scroll to the bottom of the message content whenever messages change
@@ -48,6 +42,9 @@ const Chatmsg = ({ message, chatConversation }) => {
             </p>
           ))}
         <div ref={messagesEndRef} />
+      </div>
+      <div className="messagecontent">
+        {message && <p className="ptag">{message}</p>}
       </div>
     </div>
   );
