@@ -16,8 +16,8 @@ import Conversation from "../../components/Conversations/Conversation";
 const Chat = ({ onChatConversation }) => {
   const [selectedUser, setSelectedUser] = useState({ name: "", image: "" });
   const [chatConversation, setChatConversation] = useState(null);
-  const handleUserSelection = (name, image) => {
-    setSelectedUser({ name, image });
+  const handleUserSelection = (name, image, _id) => {
+    setSelectedUser({ name, image, _id });
   };
   console.log(selectedUser);
 
@@ -44,6 +44,7 @@ const Chat = ({ onChatConversation }) => {
           contactName={selectedUser.name}
           contactImage={`http://localhost:4000/Userimg/${selectedUser.image}`}
           chatConversation={chatConversation}
+          contactid={selectedUser._id}
         />
       </div>
     </div>

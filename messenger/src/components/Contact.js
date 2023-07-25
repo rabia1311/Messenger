@@ -23,13 +23,13 @@ const Contact = ({ onNameClick, onChatConversation }) => {
 
   // ... Rest of the code ...
   // ... Rest of the code ...
-  const handleNameClick = (name, image, _id, userId) => {
+  const handleNameClick = (name, image, _id) => {
     // Call the prop function to send the name, image, _id, and userId to the parent component
-    onNameClick(name, image, _id, userId);
+    onNameClick(name, image, _id);
 
     console.log("Clicked name:", name);
     console.log("Clicked image:", image);
-    console.log("User ID:", userId);
+    console.log("User ID:", _id);
 
     // Check if _id is defined before making the query
     if (_id) {
@@ -38,7 +38,7 @@ const Contact = ({ onNameClick, onChatConversation }) => {
 
       // Fetch the chat conversation from the server based on _id and senderId
       axios
-        .get(`http://localhost:4000/chat/sendmsg/${userId}`)
+        .get(`http://localhost:4000/chat/sendmsg/${_id}`)
         .then((response) => {
           const chatConversation = response.data;
           console.log("Chat Conversation:", chatConversation);
@@ -76,7 +76,7 @@ const Contact = ({ onNameClick, onChatConversation }) => {
                   chat.name,
                   chat.image,
                   chat._id,
-                  chat.userId,
+
                   onNameClick
                 )
               }

@@ -4,25 +4,25 @@ import SendIcon from "@mui/icons-material/Send";
 import SentimentSatisfiedAltIcon from "@mui/icons-material/SentimentSatisfiedAlt";
 import attach from "../images/attach.png";
 
-const Input = ({ onMessageReceive }) => {
-  const [message, setMessage] = useState("");
-
+const Input = ({ onMessageReceive, chatid }) => {
+  const [content, setContent] = useState("");
+  console.log(chatid);
   const handleSend = () => {
-    if (message.trim() !== "") {
+    if (content.trim() !== "") {
       // Save the message to the server using the POST method with JSON data
-      fetch("http://localhost:4000/chat/sendmsg/${userId}", {
+      fetch(`http://localhost:4000/chat/sendmsg/${chatid}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ message }), // Convert the message to JSON format
+        body: JSON.stringify({ content }), // Convert the message to JSON format
       })
         .then((response) => response.json())
         .then((data) => {
           console.log("Message sent successfully:", data);
-          localStorage.setItem(Date.now().toString(), message);
-          setMessage("");
-          onMessageReceive(message);
+          localStorage.setItem(Date.now().toString(), content);
+          setContent("");
+          onMessageReceive(content);
         })
         .catch((error) => {
           console.error("Error sending message:", error);
@@ -31,7 +31,7 @@ const Input = ({ onMessageReceive }) => {
   };
 
   const handleChange = (event) => {
-    setMessage(event.target.value);
+    setContent(event.target.value);
   };
 
   return (
@@ -48,7 +48,7 @@ const Input = ({ onMessageReceive }) => {
           outline: "none",
           height: "80%",
         }}
-        value={message}
+        value={content}
         onChange={handleChange}
       />
       <div

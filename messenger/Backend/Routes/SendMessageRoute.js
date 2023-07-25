@@ -24,7 +24,7 @@ router.post("/sendmsg", upload.single("image"), createSendMessage);
 router.get("/sendmsg", getSendMessage);
 
 // New route to fetch chat conversation by user _id
-router.get("/sendmsg/:userId", getChatConversationByUserId);
-router.post("/sendmsg/:userId", upload.single("image"), createSendMessagebyid);
+router.get("/sendmsg/:_id", getChatConversationByUserId);
+router.post("/sendmsg/:_id", upload.single("image"), createSendMessagebyid);
 
 module.exports = router;

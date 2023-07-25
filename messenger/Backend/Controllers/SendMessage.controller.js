@@ -39,11 +39,11 @@ const getSendMessage = async (req, res) => {
 // conversation by id.
 const getChatConversationByUserId = async (req, res) => {
   try {
-    const { userId } = req.params;
+    const { _id } = req.params;
 
     // Fetch chat conversations where the provided userId matches either recipientUserId or senderUserId
     const chatConversation = await SendMessage.find({
-      $or: [{ recipientId: userId }],
+      $or: [{ recipientId: _id }],
     });
 
     res.status(200).json(chatConversation);

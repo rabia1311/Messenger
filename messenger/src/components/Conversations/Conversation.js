@@ -23,12 +23,19 @@ const style = {
   pb: 3,
 };
 
-const Conversation = ({ contactName, contactImage, chatConversation }) => {
+const Conversation = ({
+  contactName,
+  contactImage,
+  chatConversation,
+  contactid,
+}) => {
   const [open, setOpen] = useState(false);
   const [message, setMessage] = useState("");
   console.log(chatConversation);
   console.log(contactImage);
   console.log(contactName);
+  console.log(contactid);
+
   const handleReceiveMessage = (newMessage) => {
     setMessage(newMessage);
   };
@@ -62,7 +69,7 @@ const Conversation = ({ contactName, contactImage, chatConversation }) => {
         <div className="convoicons"></div>
       </div>
       <Message receivedMessage={message} chatConversation={chatConversation} />
-      <Input onMessageReceive={handleReceiveMessage} />
+      <Input onMessageReceive={handleReceiveMessage} chatid={contactid} />
     </div>
   );
 };
