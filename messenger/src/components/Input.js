@@ -23,6 +23,13 @@ const Input = ({ onMessageReceive, chatid }) => {
           localStorage.setItem(Date.now().toString(), content);
           setContent("");
           onMessageReceive(content);
+
+          // Fetch all messages for the particular _id after sending the message
+          return fetch(`http://localhost:4000/chat/sendmsg/${chatid}`);
+        })
+        .then((response) => response.json())
+        .then((allMessages) => {
+          console.log("All messages for the _id:", allMessages);
         })
         .catch((error) => {
           console.error("Error sending message:", error);
