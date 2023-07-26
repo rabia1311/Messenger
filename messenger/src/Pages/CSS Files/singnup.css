@@ -1,0 +1,75 @@
+/* CSS for the form */
+.VStack {
+    width: 300px; /* Adjust the width as needed */
+    margin: 0 auto; /* Center the form horizontally */
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .FormControl {
+    margin-bottom: 15px;
+  }
+  
+  .FormLabel {
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .Input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+  }
+  
+  .InputGroup {
+    width: 100%;
+  }
+  
+  .InputRightElement {
+    display: flex;
+    align-items: center;
+  }
+  
+  .Button {
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .Button:hover {
+    background-color: #2980b9;
+  }
+  
+  /* Styling for the file input */
+  .Input[type="file"] {
+    display: none;
+  }
+  
+  .FormControl[id="pic"] {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .FormControl[id="pic"] .Input {
+    display: inline-block;
+    width: auto;
+    padding: 8px 15px;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .FormControl[id="pic"] .Input:hover {
+    background-color: #2980b9;
+  }
+  

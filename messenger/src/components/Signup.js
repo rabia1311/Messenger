@@ -1,52 +1,130 @@
-import React from "react";
-import { useState } from "react";
-import "../Pages/form.css";
+import React, { useState } from "react";
+import {
+  VStack,
+  FormControl,
+  FormLabel,
+  Input,
+  InputGroup,
+  InputRightElement,
+  Button,
+} from "@chakra-ui/react";
 
 const Signup = () => {
-  const [formData, setFormData] = useState({
-    username: "",
-    email: "",
-    password: "",
-  });
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [show, setShow] = useState(false);
+  const [picLoading, setPicLoading] = useState(false);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Add your signup logic here, e.g., sending data to a backend server.
-    console.log("Signup Form Data:", formData);
-  };
-
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
+  const handleClick = () => setShow(!show);
 
   return (
-    <form className="form-container" onSubmit={handleSubmit}>
-      <input
-        type="text"
-        name="username"
-        placeholder="Username"
-        value={formData.username}
-        onChange={handleChange}
-      />
-      <input
-        type="email"
-        name="email"
-        placeholder="Email"
-        value={formData.email}
-        onChange={handleChange}
-      />
-      <input
-        type="password"
-        name="password"
-        placeholder="Password"
-        value={formData.password}
-        onChange={handleChange}
-      />
-      <button type="submit">Sign Up</button>
-    </form>
+    <VStack
+      spacing="5px"
+      width="300px"
+      margin="0 auto"
+      padding="20px"
+      border="1px solid #ccc"
+      borderRadius="5px"
+    >
+      <FormControl id="first-name" isRequired>
+        <FormLabel fontWeight="bold" color="#333">
+          Name
+        </FormLabel>
+        <Input
+          placeholder="Enter Your Name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          padding="10px"
+          border="1px solid #ccc"
+          borderRadius="5px"
+          width="100%"
+        />
+      </FormControl>
+      <FormControl id="email" isRequired>
+        <FormLabel fontWeight="bold" color="#333">
+          Email Address
+        </FormLabel>
+        <Input
+          type="email"
+          placeholder="Enter Your Email Address"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          padding="10px"
+          border="1px solid #ccc"
+          borderRadius="5px"
+          width="100%"
+        />
+      </FormControl>
+      <FormControl id="password" isRequired>
+        <FormLabel fontWeight="bold" color="#333">
+          Password
+        </FormLabel>
+        <InputGroup size="md">
+          <Input
+            type={show ? "text" : "password"}
+            placeholder="Enter Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            padding="10px"
+            border="1px solid #ccc"
+            borderRadius="5px"
+            width="100%"
+          />
+          <InputRightElement width="4.5rem">
+            <Button h="1.75rem" size="sm" onClick={handleClick}>
+              {show ? "Hide" : "Show"}
+            </Button>
+          </InputRightElement>
+        </InputGroup>
+      </FormControl>
+      <FormControl id="confirm-password" isRequired>
+        <FormLabel fontWeight="bold" color="#333">
+          Confirm Password
+        </FormLabel>
+        <InputGroup size="md">
+          <Input
+            type={show ? "text" : "password"}
+            placeholder="Confirm password"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            padding="10px"
+            border="1px solid #ccc"
+            borderRadius="5px"
+            width="100%"
+          />
+          <InputRightElement width="4.5rem">
+            <Button h="1.75rem" size="sm" onClick={handleClick}>
+              {show ? "Hide" : "Show"}
+            </Button>
+          </InputRightElement>
+        </InputGroup>
+      </FormControl>
+      <FormControl id="pic">
+        <FormLabel fontWeight="bold" color="#333">
+          Upload your Picture
+        </FormLabel>
+        <Input type="file" p={1.5} accept="image/*" />
+      </FormControl>
+      <Button
+        colorScheme="blue"
+        width="100%"
+        style={{
+          marginTop: "15px",
+          padding: "10px 20px",
+          backgroundColor: "#3498db",
+          color: "#fff",
+          border: "none",
+          borderRadius: "5px",
+          cursor: "pointer",
+          transition: "background-color 0.3s ease",
+        }}
+        isLoading={picLoading}
+      >
+        Sign Up
+      </Button>
+    </VStack>
   );
 };
 
