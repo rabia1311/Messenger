@@ -6,6 +6,7 @@ import attach from "../images/attach.png";
 
 const Input = ({ onMessageReceive, chatid }) => {
   const [content, setContent] = useState("");
+  const [recipientId, setRecipientId] = useState("");
   console.log(chatid);
   const handleSend = () => {
     if (content.trim() !== "") {
@@ -22,6 +23,7 @@ const Input = ({ onMessageReceive, chatid }) => {
           console.log("Message sent successfully:", data);
           localStorage.setItem(Date.now().toString(), content);
           setContent("");
+
           onMessageReceive(content);
 
           // Fetch all messages for the particular _id after sending the message
@@ -30,6 +32,9 @@ const Input = ({ onMessageReceive, chatid }) => {
         .then((response) => response.json())
         .then((allMessages) => {
           console.log("All messages for the _id:", allMessages);
+
+          // Show the details posted in the network tab response
+          console.log("Network tab response:", allMessages);
         })
         .catch((error) => {
           console.error("Error sending message:", error);
