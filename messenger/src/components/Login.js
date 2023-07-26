@@ -32,15 +32,6 @@ const Login = () => {
         <FormLabel fontWeight="bold" color="#333">
           Name
         </FormLabel>
-        <Input
-          placeholder="Enter Your Name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          padding="10px"
-          border="1px solid #ccc"
-          borderRadius="5px"
-          width="100%"
-        />
       </FormControl>
       <FormControl id="email" isRequired>
         <FormLabel fontWeight="bold" color="#333">
