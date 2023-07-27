@@ -32,8 +32,6 @@ const Conversation = ({
   const [open, setOpen] = useState(false);
   const [message, setMessage] = useState("");
   console.log(chatConversation);
-  console.log(contactImage);
-  console.log(contactName);
   console.log(contactid);
 
   const handleReceiveMessage = (newMessage) => {

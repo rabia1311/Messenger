@@ -33,11 +33,11 @@ const Contact = ({ onNameClick, onChatConversation }) => {
     // Check if _id is defined before making the query
     if (_id) {
       // Assuming senderId is the default sender's ID you want to use
-      const senderId = "64be2bee57905d1b5c496540"; // Replace with the default sender's ID
+      const senderId = "64c212eec944ec0257b4c99c"; // Replace with the default sender's ID
 
       // Fetch the chat conversation from the server based on _id and senderId
       axios
-        .get(`http://localhost:4000/chat/sendmsg/${_id}`)
+        .get(`http://localhost:4000/chat/send/${_id}`)
         .then((response) => {
           const chatConversation = response.data;
           console.log("Chat Conversation:", chatConversation);

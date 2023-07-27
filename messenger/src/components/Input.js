@@ -34,7 +34,7 @@ const Input = ({ onMessageReceive, chatid }) => {
           onMessageReceive(content);
 
           // Fetch all messages for the particular _id after sending the message
-          return fetch(`http://localhost:4000/chat/sendmsg/${chatid}`);
+          return fetch(`http://localhost:4000/chat/send/${chatid}`);
         })
         .then((response) => response.json())
         .then((allMessages) => {
