@@ -26,5 +26,21 @@ const sendMessageController = async (req, res) => {
   }
 };
 
+// GET the conversations by particular _id .
+
+const getMessagesByIdController = async (req, res) => {
+  try {
+    const { id } = req.params; // The _id of the recipient (receiver)
+
+    // Find all messages where the chat field matches the provided _id
+    const messages = await SendMessage.find({ chat: id }).exec();
+
+    res.status(200).json(messages); // Respond with the array of messages
+  } catch (error) {
+    console.error("Error fetching messages:", error);
+    res.status(500).json({ error: "Error fetching messages" });
+  }
+};
+
 // Export the controller function
-module.exports = sendMessageController;
+module.exports = { sendMessageController, getMessagesByIdController };
