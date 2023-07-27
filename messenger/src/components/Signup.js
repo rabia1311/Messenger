@@ -38,8 +38,17 @@ const Signup = () => {
     })
       .then((response) => {
         // Handle the response from the backend (if needed)
-        // For example, you can show a success message or redirect to another page.
-        console.log("Response:", response);
+        // Assuming the response contains a JSON object with the _id property.
+        return response.json();
+      })
+      .then((data) => {
+        // Save the _id in local storage and display it in the console.
+        if (data && data._id) {
+          localStorage.setItem("_id", data._id);
+          console.log("Response _id:", data._id);
+        } else {
+          console.error("Error: _id not found in the response");
+        }
       })
       .catch((error) => {
         // Handle errors that occurred during the POST request.
