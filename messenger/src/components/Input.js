@@ -6,22 +6,29 @@ import attach from "../images/attach.png";
 
 const Input = ({ onMessageReceive, chatid }) => {
   const [content, setContent] = useState("");
-  const [recipientId, setRecipientId] = useState("");
   console.log(chatid);
+
   const handleSend = () => {
     if (content.trim() !== "") {
       // Save the message to the server using the POST method with JSON data
-      fetch(`http://localhost:4000/chat/sendmsg/${chatid}`, {
+      fetch(`http://localhost:4000/chat/send/${chatid}`, {
+        // Change the endpoint to match your server route
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ content }), // Convert the message to JSON format
+        body: JSON.stringify({
+          content: content, // Message content
+          chat: chatid, // Chat ID
+          // Assuming you have some mechanism to get the senderId (recipientId in this case)
+          sender: "64c212eec944ec0257b4c99c", // Replace with the actual senderId
+        }),
       })
         .then((response) => response.json())
         .then((data) => {
           console.log("Message sent successfully:", data);
-          localStorage.setItem(Date.now().toString(), content);
+
+          // Clear the input field after sending the message
           setContent("");
 
           onMessageReceive(content);
