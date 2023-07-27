@@ -40,6 +40,14 @@ const registerUser = asyncHandler(async (req, res) => {
   }
 });
 
+//get users
+// Get all users
+
+const getAllUsers = asyncHandler(async (req, res) => {
+  const users = await User.find({}).select("-password"); // Excluding the password field from the response
+
+  res.status(200).json(users);
+});
 //    Auth the user
 
 const authUser = asyncHandler(async (req, res) => {
@@ -60,4 +68,19 @@ const authUser = asyncHandler(async (req, res) => {
   }
 });
 
-module.exports = { registerUser, authUser };
+//searching user
+const allUsers = asyncHandler(async (req, res) => {
+  const keyword = req.query.search
+    ? {
+        $or: [
+          { name: { $regex: req.query.search, $options: "i" } },
+          { email: { $regex: req.query.search, $options: "i" } },
+        ],
+      }
+    : {};
+
+  const users = await User.find(keyword).find({ _id: { $ne: req.user._id } });
+  res.send(users);
+});
+
+module.exports = { registerUser, authUser, allUsers, getAllUsers };

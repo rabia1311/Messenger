@@ -13,11 +13,12 @@ app.use(cors());
 
 const AddUserRouter = require("../Backend/Routes/AddUserRoute");
 const SendMessageRouter = require("../Backend/Routes/SendMessageRoute");
+const ChatRouter = require("../Backend/Routes/ChatRoute");
 const path = require("path");
 
 app.use("/chat", AddUserRouter);
 app.use("/chat", SendMessageRouter);
-
+app.use("/chat", ChatRouter);
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
