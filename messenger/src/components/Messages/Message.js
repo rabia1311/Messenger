@@ -8,7 +8,7 @@ const Message = ({ receivedMessage, chatConversation }) => {
   return (
     <div className="messages">
       <Reply />
-      <Reply />
+
       <Chatmsg message={receivedMessage} chatConversation={chatConversation} />
     </div>
   );

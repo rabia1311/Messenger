@@ -1,21 +1,34 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../components/Messages/msg.css";
 import "../components/chatmsg.css";
 import dataArray from "../Data/Data";
+
 const Reply = () => {
+  const [messages, setMessages] = useState([]);
+
+  useEffect(() => {
+    // Get the _id from local storage
+    const userId = "64c253dff747366d69ae49a3";
+
+    // Make an HTTP GET request to fetch messages
+    fetch(`http://localhost:4000/chat/send/${userId}`)
+      .then((response) => response.json())
+      .then((data) => setMessages(data))
+      .catch((error) => console.error("Error fetching messages:", error));
+  }, []);
+
   return (
     <div className="message-owner">
       <div className="messageinfooo">
-        <img
-          src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCACAAIADASIAAhEBAxEB/8QAHAAAAgIDAQEAAAAAAAAAAAAAAwQFBgACBwEI/8QAOxAAAgEDAwIEAwYEAwkAAAAAAQIDAAQRBRIhBjETQVFhIjJxFFKBkaGxFSNCYgcWwSQzQ1Oj0dLh8P/EABoBAAIDAQEAAAAAAAAAAAAAAAIDAAEEBQb/xAAjEQACAgICAgIDAQAAAAAAAAAAAQIRAyESMRNBBCIyUWFx/9oADAMBAAIRAxEAPwA4WsYjFbtbz79vhmjrptw2PgNYtLtm/wAsf2JrGG5r0DBxTUljcQjlPyrI7G4PxBO9Fa/ZXkh3YArmtDCDUn/Dp9udtQeq6ta6SSk7Zl/5a9/x9KGDbf1L8kH7DGEVgjx5VXU60t2kw0HHqH5pz/M9i0RZVlLY4XHf8aa45AVPGTAXitgKpkusXk8hkEzoM8KpwBUjpnULeIsV6wKk4EuOR9aksMqskc0W6LMgwc08nI4pNeRnvTET7TzQ45U9hzjY0VJSgYPnTkTqRzRfCiemShy6YuMuOmR20ngVpLGVHNS3hRoMjFI3Tg5ApbgorYxTbZYBbRk5IoN3PFaIDjingOBzSeoWf2hAucZrEt9nn8dOVSejaIJcRhsd63dUhjJC1lvELaEKTnFEdBNE1Stkk/tS6IG/1+Gx0m8vGXPgISAfNuwH51we7mudRupJpHZmdizMfMmusdd2yWujxwBj/tE+SPZRmufRWUkreHBC0jdsIucV0PjQSjyXs244xW4kPBahW2lsn1pyEtFhQcqan4OkLyZQ00iQAnseT+Qqbs9Bs7CB0A8W4cFBIw7ZGOB5csK0hlVWOUW5kaN1XjDEcf8A3BoDEnjFXqGRbgsJVVkk/pfGCG2Nj/qmvYdB0S6wRalCQDhZDjkA+voahBLpnUmlj+xTnLKMxk+Y9KsqilrXpXTQ4kg8WCZTkNvJAP0PlUlFbM65PB7Ee9ZsmN3aNeHKqpmi5HaihmHnRks+cZplNO3DzoFjmMeSIgXYjk1kUPiNk9hR7m1aA+1bWkqg7DVJfamW39biOWt1JLcbHRlI8qeuhcLFlIWOKn/4fBHdeKIxuPtTYhR88D6Va+KjmyxQcuSRz1rm7uJQiwPgHnippIp1t+ImzirMljCjbtgzWhu7CMkSXVsmO++VR/rVv40WtEnjjKqVHNdY0sarexfb0YRW6F1jzjeSfP24qLuJrTSoyGMUEXoOP086d/xG6pitNVSLS3gmka3AMquGVOT6dz9a5dNNNdSmS5uN7seWdxWmEVGNIKv0Wi66rhjY/ZYjIBxuc4H5VAzdQag7Bkk2bSCNoHcbf/BT+FKKiEhVcMT93n9qkbTQL27P8q2cj1bgfrVucV2w445PpEVLd3NyAsjswGMA9hgY7fTiiQyyJ2LD6HFW606DvplzI0MQ9yWP6VKR/wCHvbddvj+2MD980t54Iavj5H6Kna6xewOGiu5oyB235B/A1a9D6mjZZRqU8cRA3iRhtDev400nQOng4lubtv7fE2j9BVE6p6ej0/X2s7PxTu27FLbjyfepHNGTpElglBWy53XXWmxPttRJdMPuDA/M1aenNTn1XTxdTWht1Y/ywWyWX19qo2g9ImII98u3n4og2S3sceXtXRLMqqBVAAAwAOwo01YDTrZrqQyh4qLt498w9qlr/wCQ1FwyeGTSMn57H4/wOkbkODkVisiscGqD/Hr0PvBGPSgy9S35fClVo1kTEvDJHQ5ZIniZXwVYFSPUGvmvrro8dParNNGLiTS5CWikUbtn9jHyx6+ddRGtXrKfjBpRNTuUdwzBg/DKwyD+FR5EEsLPn55VeTZbxcffY5q6dHaE93BJdtFvwdq7hnnzroupdG6X1BpUjkwafLBcEJMkaqMYHBA7gk1J9GaN/Dum4oJkUTCWTf8AUMR/pSpZFOOh0cTxz+xTpdAmgAmbYnPCnij219q9qFKi0aPz284+vpVx1XQ1vpQ0zs0Y/wCGOAfY+1QFl0gLGCaC3DBJH3mRiMj6Hy+lJtezTTfRN6PqRvVGVUN2IU8Uj1DrN7ZOi293FboTjLLk1MaHoCWMZAJJ71H650tDquRIocZ5ViRkUKtMOlLRppMlzd7Wk1COdm/qRePpwarnWFsU6w0ebaN0qqr/AFV+Kt2k9MWunmNreJoSi4G1ieD6+tOXWk29xqkV7NGGe3gcIW5Ckkc4/OjhKpWJyRtURiKW5p+3UrioyOfBppbo7eK1KUezK4y6Gr1gYz9KiCNxwKPLOX4rIFU96VN85aGRXGJHTybRigxI0nxUSZdz4o8SBVFVdRD7YEEo2K0PL5osvz0LODURCZsYF1O1+xluY5BIw++o8qsFuGjafcmEaVnUegPJ/XNUqC5ns7pLiBsMvqMgj0NWPTddfUrtoJIkjPh7l2efrQca6ClJtJP0TG6Aj48Y8jSs1zunSGGPKn52x2Ht70rLGftAXOF+vnUE0+o2t2/j2txcW8pI8aOQKkfsw7/jQJ26DSSRYYuotLhvGtDJIsvpIhWiC+trm4dIVdmA4OPhqMXTDNIZcaaNvBBmJPp3oF/arpsbPDbwPJk7VtJW3sfbyq6bLXFddlntruN4TxgjgqfKorWbgx2khRuJSIx9O5qO0yLUftjtdK0QkjG+JmDFT7kcZxXmsXDSXIgXHhx4IA9SOakU26AnS2IximEPOKAnejKRTkkhTZ5IOaHvZO1HZdwzSz0uSphJ2gEg/mUwvKil5f8AeUwnyirl0iAZR8dCKEsKLN89FRQVq7pEqzQRgrzTOhLt1qNc/OrL+laGvdK41y1I+/j9DVRZbLDJh2ZW4cHzpm24G0Yz5ULU7bxPjU4cdiKpGtXOuWc6y2rFlXui8H8KCthO+Oi7XdtcKDLAgYj+kEDNHt4ZGRJZQN+OPPFc6i6/nUhLsTBvNWUg1snUus6iyx2FvOzMcAlCqgH1J7Cjp+yvI6LzeX0VuZXLAkcADzqsPI0sryOfiY5NafZZLPEM85mmAy7nzY+ntWA4qQoGVhR3oyigA0VWpi7AYdSMYNLzLjtW+6hSPkVJtVRIp2LzHDg0ZHXaOaFLHvoYiYcUvTQyjeZgX4NHj+QUk7xRybZJY1b0ZgDUdf8AUcVuhjtfjf75HA+lEoOWkC5xjtk5cTxW0JllcKg8zWdF3I1XVrydgqx2pVY082LD5ifaueXepzXL7pZGf6ntRtB6sbpfXFnlQyWc42TBe6nyI9ab4eMf6K81y/h3G7TcO+Kj3iQ8Oufc0a11O11SyS7s50nhcZVlP6exoMh5rJLs1Q6FWsbTeHa3QkeZFMAx4VYx8OfOvDIhOCcGsLIp+HyFUEV/UJN2oTEfexQA1UPqG613pbqy7eQeLb3Lm4VRypRjx+XarNo2tW2s2omgOGHzoe6mnSg4qxCmpOvZMhua3DUANW4NVz1oviF3Vox4rzNeMeKCywm6q3qPVsUbvBYQyXEg4MijCqfrTOvX6QWhtwx8SUYIH3apU9wx+AYCjjArVhwprlIRlytPijLjVsynx0KZPzZyD+NFKtJb+MrKQQeM57VHPhhgjg+Rpa23W9+Igf5cqkAHyI5rV/DK2+x/xMjPl5+1CugJEKEAgr+1CScMXAOZEO1h97FbBwwBB49Kouya0+71joi8glVlktrmNZQFbdFMhGe/kw/MGuq6Lrdpr9mLi1bn+uMn4kPoa5p0y41C3Oj3UL3Vs+SERSzR/wBy47EfrXl9pmt9B6vHdReKsTH+VOUISUd9rD19vypOTCp/6Nx5nHR1mWH4sFc0eG2JAAHFJ9J9Uad1Rb7VxDfIMyWzHn6qfMft51ZxbKoz+1Y/G09mvyprRUeqekP8zadaG3mEF/akmGQjIIPdW9jXHbi1u+n79NUtVaO3lkaGZV5WKZfmX6HuP/VfRN5dJpmm3lyeFhRn/TP71wzfcXHQGssSrCa9WQhhzuAJJHp3rXiWmmZMr2miW0zqKG6ULcYjcjhv6T/2qcD5AIPBrlNjOWgXnHGRU7pmtXFrtQsXi+6fL6UM8Ce4hwzvqRe91as1BWUFAw8xmvC+azqA9yP/2Q=="
-          alt=""
-          className="messageinFo"
-        />
         <h4>Forest Kroch</h4>
         <span className="span">1.35PM</span>
       </div>
       <div className="messagecontent">
-        <p className="paragraph"> I am fine and you ? </p>
+        {messages.map((message, index) => (
+          <p key={index} className="paragraph">
+            {message.content}
+          </p>
+        ))}
       </div>
     </div>
   );
