@@ -1,30 +1,12 @@
+// Import necessary modules
 const express = require("express");
-const multer = require("multer");
-
 const router = express.Router();
-const Storage = multer.diskStorage({
-  destination: "Images/",
-  filename: (req, file, cb) => {
-    cb(null, file.originalname);
-  },
-});
-const upload = multer({
-  storage: Storage,
-});
 
-const {
-  createSendMessage,
-  getSendMessage,
-  getChatConversationByUserId,
-  createSendMessagebyid,
-} = require("../Controllers/SendMessage.controller");
-const SendMessage = require("../Models/SendMessage");
+// Import the sendMessageController
+const sendMessageController = require("../Controllers/SendMessage.controller"); // Replace with the actual path to your sendMessageController file
 
-router.post("/sendmsg", upload.single("image"), createSendMessage);
-router.get("/sendmsg", getSendMessage);
+// Create the POST route to send a message to a particular _i
+router.route("/send/:id").post(sendMessageController);
 
-// New route to fetch chat conversation by user _id
-router.get("/sendmsg/:_id", getChatConversationByUserId);
-router.post("/sendmsg/:_id", upload.single("image"), createSendMessagebyid);
-
+// Export the router
 module.exports = router;

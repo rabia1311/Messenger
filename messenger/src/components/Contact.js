@@ -7,7 +7,7 @@ const Contact = ({ onNameClick, onChatConversation }) => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:4000/chat/adduser")
+      .get("http://localhost:4000/chat/getuser")
       .then((response) => {
         setUserChats(response.data);
       })
@@ -28,7 +28,6 @@ const Contact = ({ onNameClick, onChatConversation }) => {
     onNameClick(name, image, _id);
 
     console.log("Clicked name:", name);
-    console.log("Clicked image:", image);
     console.log("User ID:", _id);
 
     // Check if _id is defined before making the query

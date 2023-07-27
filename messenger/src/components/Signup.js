@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   VStack,
   FormControl,
@@ -10,6 +11,7 @@ import {
 } from "@chakra-ui/react";
 
 const Signup = () => {
+  const navigate = useNavigate();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -43,6 +45,8 @@ const Signup = () => {
         // Handle errors that occurred during the POST request.
         console.error("Error:", error);
       });
+
+    navigate("/");
   };
 
   return (
@@ -128,12 +132,7 @@ const Signup = () => {
             </InputRightElement>
           </InputGroup>
         </FormControl>
-        <FormControl id="pic">
-          <FormLabel fontWeight="bold" color="#333">
-            Upload your Picture
-          </FormLabel>
-          <Input type="file" p={1.5} accept="image/*" />
-        </FormControl>
+
         <Button
           type="submit"
           colorScheme="blue"
