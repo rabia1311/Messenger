@@ -10,7 +10,9 @@ const {
 
 // Create the POST route to send a message to a particular _i
 router.route("/send/:id").post(sendMessageController);
-router.route("/send/:id").get(getMessagesByIdController);
+router.route("/list/:sender_id/:receiver_id").get(getMessagesByIdController);
+
+//Routes for receiver messages -
 
 // Export the router
 module.exports = router;
