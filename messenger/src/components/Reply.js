@@ -11,7 +11,9 @@ const Reply = () => {
     const userId = "64c253dff747366d69ae49a3";
 
     // Make an HTTP GET request to fetch messages
-    fetch(`http://localhost:4000/chat/send/${userId}`)
+    fetch(
+      `http://localhost:4000/chat/list/64c212eec944ec0257b4c99c/64c2135cac8c608dca5e88d9`
+    )
       .then((response) => response.json())
       .then((data) => setMessages(data))
       .catch((error) => console.error("Error fetching messages:", error));

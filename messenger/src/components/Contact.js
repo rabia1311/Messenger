@@ -32,12 +32,11 @@ const Contact = ({ onNameClick, onChatConversation }) => {
 
     // Check if _id is defined before making the query
     if (_id) {
-      // Assuming senderId is the default sender's ID you want to use
       const senderId = "64c212eec944ec0257b4c99c"; // Replace with the default sender's ID
 
       // Fetch the chat conversation from the server based on _id and senderId
       axios
-        .get(`http://localhost:4000/chat/send/${_id}`)
+        .get(`http://localhost:4000/chat/list/${senderId}/${_id}`)
         .then((response) => {
           const chatConversation = response.data;
           console.log("Chat Conversation:", chatConversation);
@@ -50,7 +49,6 @@ const Contact = ({ onNameClick, onChatConversation }) => {
       console.error("_id is undefined. Cannot make the query.");
     }
   };
-  // ... Rest of the code ...
 
   return (
     <div className="chats">
