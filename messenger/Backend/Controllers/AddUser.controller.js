@@ -40,6 +40,30 @@ const registerUser = asyncHandler(async (req, res) => {
   }
 });
 
+//Login user
+
+const loginUser = asyncHandler(async (req, res) => {
+  const { email } = req.body;
+
+  if (!email) {
+    res.status(400);
+    throw new Error("Please enter your email.");
+  }
+
+  const user = await User.findOne({ email });
+
+  if (!user) {
+    res.status(404);
+    throw new Error("User not found. Please check your email.");
+  }
+
+  res.status(200).json({
+    _id: user._id,
+    name: user.name,
+    email: user.email,
+    pic: user.pic,
+  });
+});
 //get users
 // Get all users
 
@@ -48,39 +72,5 @@ const getAllUsers = asyncHandler(async (req, res) => {
 
   res.status(200).json(users);
 });
-//    Auth the user
 
-const authUser = asyncHandler(async (req, res) => {
-  const { email, password } = req.body;
-
-  const user = await User.findOne({ email });
-
-  if (user && (await user.matchPassword(password))) {
-    res.json({
-      _id: user._id,
-      name: user.name,
-      email: user.email,
-      pic: user.pic,
-    });
-  } else {
-    res.status(401);
-    throw new Error("Invalid Email or Password");
-  }
-});
-
-//searching user
-const allUsers = asyncHandler(async (req, res) => {
-  const keyword = req.query.search
-    ? {
-        $or: [
-          { name: { $regex: req.query.search, $options: "i" } },
-          { email: { $regex: req.query.search, $options: "i" } },
-        ],
-      }
-    : {};
-
-  const users = await User.find(keyword).find({ _id: { $ne: req.user._id } });
-  res.send(users);
-});
-
-module.exports = { registerUser, authUser, allUsers, getAllUsers };
+module.exports = { registerUser, getAllUsers, loginUser };

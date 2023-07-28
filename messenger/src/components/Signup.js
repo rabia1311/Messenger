@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import {
   VStack,
   FormControl,
@@ -11,7 +10,6 @@ import {
 } from "@chakra-ui/react";
 
 const Signup = () => {
-  const navigate = useNavigate();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -35,27 +33,11 @@ const Signup = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(formData),
-    })
-      .then((response) => {
-        // Handle the response from the backend (if needed)
-        // Assuming the response contains a JSON object with the _id property.
-        return response.json();
-      })
-      .then((data) => {
-        // Save the _id in local storage and display it in the console.
-        if (data && data._id) {
-          localStorage.setItem("_id", data._id);
-          console.log("Response _id:", data._id);
-        } else {
-          console.error("Error: _id not found in the response");
-        }
-      })
-      .catch((error) => {
-        // Handle errors that occurred during the POST request.
-        console.error("Error:", error);
-      });
-
-    navigate("/");
+    }).then((response) => {
+      // Handle the response from the backend (if needed)
+      // Assuming the response contains a JSON object with the _id property.
+      return response.json();
+    });
   };
 
   return (
