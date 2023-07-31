@@ -39,7 +39,7 @@ const Chatmsg = ({ message, chatConversation }) => {
         {chatConversation &&
           chatConversation.map((msg, index) => (
             <p key={index} className="ptag">
-              {msg.content}
+              {msg.chat}
             </p>
           ))}
         <div ref={messagesEndRef} />
