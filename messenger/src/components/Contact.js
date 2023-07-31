@@ -63,7 +63,9 @@ const Contact = ({ onNameClick, onChatConversation }) => {
         <div className="userchat-container" key={index}>
           <img
             className="img"
-            src={`http://localhost:4000/Userimg/${chat.image}`}
+            src={
+              "https://cdn3.vectorstock.com/i/1000x1000/30/97/flat-business-man-user-profile-avatar-icon-vector-4333097.jpg"
+            }
             alt="User"
             style={{
               width: "50px",

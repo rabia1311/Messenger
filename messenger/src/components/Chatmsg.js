@@ -31,7 +31,11 @@ const Chatmsg = ({ message, chatConversation }) => {
   return (
     <div className="message-owner">
       <div className="messageinfo">
-        <img src={contactImage} alt="" className="messageinFo" />
+        <img
+          src="https://cdn3.vectorstock.com/i/1000x1000/30/97/flat-business-man-user-profile-avatar-icon-vector-4333097.jpg"
+          alt=""
+          className="messageinFo"
+        />
         <h4>You</h4>
         <span className="span">just now</span>
       </div>

@@ -55,7 +55,11 @@ const Conversation = ({
     <div className="convo">
       <div className="convoinfo">
         <span style={{ display: "flex", alignItems: "center" }}>
-          <img className="imghead" src={contactImage} alt="Contact" />
+          <img
+            className="imghead"
+            src="https://img.favpng.com/5/1/21/computer-icons-user-profile-avatar-female-png-favpng-cqykKc0Hpkh65ueWt6Nh2KFvS.jpg"
+            alt="Contact"
+          />
           <div style={{ marginLeft: "10px" }}>
             <h2 className="h2" style={{ marginBottom: "0" }}>
               {contactName}
