@@ -7,6 +7,7 @@ const Message = ({ receivedMessage, chatConversation }) => {
   console.log(chatConversation);
   return (
     <div className="messages">
+      <Reply />
       <Chatmsg message={receivedMessage} chatConversation={chatConversation} />
     </div>
   );
