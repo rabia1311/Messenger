@@ -29,6 +29,7 @@ const Contact = ({ onNameClick, onChatConversation }) => {
 
     console.log("Clicked name:", name);
     console.log("User ID:", _id);
+    localStorage.setItem("chatUserId", _id);
 
     // Check if _id is defined before making the query
     if (_id) {
