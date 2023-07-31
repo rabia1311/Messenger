@@ -40,6 +40,28 @@ userSchema.pre("save", async function (next) {
   }
 });
 
+// Creating a Default User.
+userSchema.statics.addGuestUser = async function () {
+  const defaultGuestEmail = "guest@example.com";
+  const defaultGuestPassword = "guestPassword";
+
+  const existingGuestUser = await this.findOne({ email: defaultGuestEmail });
+
+  if (!existingGuestUser) {
+    const guestUser = new this({
+      name: "Guest",
+      email: "guestuser123@gmail.com",
+      password: "guestuser",
+      pic: "https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg",
+    });
+
+    await guestUser.save();
+    console.log("Guest User created successfully.");
+  } else {
+    console.log("Guest User already exists.");
+  }
+};
+
 const User = mongoose.model("User", userSchema);
 
 module.exports = User;

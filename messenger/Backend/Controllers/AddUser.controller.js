@@ -73,4 +73,17 @@ const getAllUsers = asyncHandler(async (req, res) => {
   res.status(200).json(users);
 });
 
-module.exports = { registerUser, getAllUsers, loginUser };
+//Controller function to create guest user -:-
+
+const createGuestUser = async (req, res) => {
+  try {
+    await User.addGuestUser(); // Calling the static method
+    res.status(200).json({ message: "Guest User created successfully." });
+  } catch (err) {
+    res
+      .status(500)
+      .json({ message: "Error creating Guest User.", error: err.message });
+  }
+};
+
+module.exports = { registerUser, getAllUsers, loginUser, createGuestUser };
