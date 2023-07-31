@@ -10,9 +10,8 @@ const Input = ({ onMessageReceive, chatid }) => {
 
   const handleSend = () => {
     if (content.trim() !== "") {
-      // Save the message to the server using the POST method with JSON data
-      fetch(`http://localhost:4000/chat/send/${chatid}`, {
-        // Change the endpoint to match your server route
+      // Prepare the common headers and data for the fetch
+      const requestOptions = {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -23,7 +22,21 @@ const Input = ({ onMessageReceive, chatid }) => {
           // Assuming you have some mechanism to get the senderId (recipientId in this case)
           sender: "64c212eec944ec0257b4c99c", // Replace with the actual senderId
         }),
-      })
+      };
+
+      // Define the endpoint based on the chatid value
+      let endpoint;
+      if (chatid === "64c2135cac8c608dca5e88d9") {
+        endpoint = `http://localhost:4000/chat/send/${chatid}`;
+      } else if (chatid === "64c212eec944ec0257b4c99c") {
+        endpoint = `http://localhost:4000/chat/receive/${chatid}`;
+      } else {
+        console.error("Unknown chatid:", chatid);
+        return;
+      }
+
+      // Send the message to the appropriate endpoint
+      fetch(endpoint, requestOptions)
         .then((response) => response.json())
         .then((data) => {
           console.log("Message sent successfully:", data);
@@ -34,9 +47,15 @@ const Input = ({ onMessageReceive, chatid }) => {
           onMessageReceive(content);
 
           // Fetch all messages for the particular _id after sending the message
-          return fetch(
-            "http://localhost:4000/chat/list/64c212eec944ec0257b4c99c/64c2135cac8c608dca5e88d9"
-          );
+          if (chatid === "64c2135cac8c608dca5e88d9") {
+            return fetch(
+              "http://localhost:4000/chat/list/64c212eec944ec0257b4c99c/64c2135cac8c608dca5e88d9"
+            );
+          } else if (chatid === "64c212eec944ec0257b4c99c") {
+            return fetch(
+              "http://localhost:4000/chat/receive/64c212eec944ec0257b4c99c"
+            );
+          }
         })
         .then((response) => response.json())
         .then((allMessages) => {
