@@ -33,7 +33,7 @@ const Conversation = ({
   const [message, setMessage] = useState("");
   console.log(chatConversation);
   console.log(contactid);
-
+  console.log(contactName);
   const handleReceiveMessage = (newMessage) => {
     setMessage(newMessage);
   };
@@ -66,7 +66,11 @@ const Conversation = ({
 
         <div className="convoicons"></div>
       </div>
-      <Message receivedMessage={message} chatConversation={chatConversation} />
+      <Message
+        receivedMessage={message}
+        chatConversation={chatConversation}
+        receiver={contactName}
+      />
       <Input onMessageReceive={handleReceiveMessage} chatid={contactid} />
     </div>
   );
