@@ -9,7 +9,13 @@ const Contact = ({ onNameClick, onChatConversation }) => {
     axios
       .get("http://localhost:4000/chat/getuser")
       .then((response) => {
-        setUserChats(response.data);
+        // Filter out the currently logged-in user using localStorage _id
+        const currentUserID = localStorage.getItem("chatUserId");
+        const filteredChats = response.data.filter(
+          (user) => user._id !== currentUserID
+        );
+
+        setUserChats(filteredChats);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
@@ -70,13 +76,7 @@ const Contact = ({ onNameClick, onChatConversation }) => {
             {/* Pass the arguments in the correct order */}
             <span
               onClick={() =>
-                handleNameClick(
-                  chat.name,
-                  chat.image,
-                  chat._id,
-
-                  onNameClick
-                )
+                handleNameClick(chat.name, chat.image, chat._id, onNameClick)
               }
             >
               {chat.name}
@@ -89,4 +89,5 @@ const Contact = ({ onNameClick, onChatConversation }) => {
     </div>
   );
 };
+
 export default Contact;
