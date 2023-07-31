@@ -57,6 +57,8 @@ userSchema.statics.addGuestUser = async function () {
 
     await guestUser.save();
     console.log("Guest User created successfully.");
+
+    return { _id: guestUser._id, email: guestUser.email, name: guestUser.name };
   } else {
     console.log("Guest User already exists.");
   }

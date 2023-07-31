@@ -47,6 +47,21 @@ const Login = () => {
     setPicLoading(false);
   };
 
+  const handleLoginAsGuest = () => {
+    fetch("http://localhost:4000/chat/create-guest-user", {
+      method: "POST",
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Guest User Data:", data._id, data.email, data.name); // Print the required properties
+        // Perform other actions with the data as needed
+      })
+      .catch((error) => {
+        console.error("Error creating Guest User:", error);
+      });
+    navigate("/");
+  };
+
   return (
     <form
       onSubmit={handleSubmit}
@@ -116,6 +131,8 @@ const Login = () => {
         >
           Login
         </Button>
+
+        <Button onClick={handleLoginAsGuest}>Login as Guest</Button>
       </VStack>
     </form>
   );

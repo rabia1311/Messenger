@@ -77,8 +77,19 @@ const getAllUsers = asyncHandler(async (req, res) => {
 
 const createGuestUser = async (req, res) => {
   try {
-    await User.addGuestUser(); // Calling the static method
-    res.status(200).json({ message: "Guest User created successfully." });
+    const guestUserDetails = await User.addGuestUser(); // Calling the static method and getting the returned details
+
+    // Extract the desired fields from the guestUserDetails object
+    const { _id, email, name } = guestUserDetails;
+    console.log({ _id, email, name }); // Log the extracted fields to the console
+
+    res
+      .status(200)
+      .json({
+        _id: guestUser._id,
+        email: guestUser.email,
+        name: guestUser.name,
+      });
   } catch (err) {
     res
       .status(500)
