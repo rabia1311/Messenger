@@ -38,7 +38,7 @@ const Login = () => {
       localStorage.setItem("_id", _id);
 
       // Navigate to the home page ("/")
-      navigate("/");
+      navigate("/home");
     } catch (error) {
       console.error("Login failed:", error);
       // Handle login error here (e.g., show error message to the user)
@@ -59,7 +59,7 @@ const Login = () => {
       .catch((error) => {
         console.error("Error creating Guest User:", error);
       });
-    navigate("/");
+    navigate("/home");
   };
 
   return (

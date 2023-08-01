@@ -2,7 +2,7 @@ import * as React from "react";
 import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import PersonAddAltIcon from "@mui/icons-material/PersonAddAlt";
+import LogoutIcon from "@mui/icons-material/Logout";
 import {
   Button,
   TextField,
@@ -22,7 +22,7 @@ const Navbar = () => {
     // Navigate to "/home" page
     // Replace the following line with the actual navigation logic you are using (e.g., React Router)
     // For this example, we will use a simple window.location redirection
-    window.location.href = "/home";
+    window.location.href = "/";
   };
 
   return (
@@ -38,7 +38,7 @@ const Navbar = () => {
         style={{ marginTop: "24px", justifyContent: "space-between" }}
       >
         <span>
-          <PersonAddAltIcon onClick={handleAddUserClick} />
+          <LogoutIcon onClick={handleAddUserClick} />
         </span>
       </div>
     </div>

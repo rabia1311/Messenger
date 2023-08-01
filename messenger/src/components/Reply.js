@@ -46,6 +46,11 @@ const Reply = ({ receiver }) => {
     <div className="message-owner">
       <div className="messageinfooo">
         <h4>{receiver}</h4>
+        <img
+          className="imghead"
+          src="https://cdn3.vectorstock.com/i/1000x1000/30/97/flat-business-man-user-profile-avatar-icon-vector-4333097.jpg"
+          alt="Contact"
+        />
         {/* Assuming you have a timestamp available in the data */}
         <span className="span">
           {messages.length > 0 ? messages[0].timestamp : "Timestamp"}

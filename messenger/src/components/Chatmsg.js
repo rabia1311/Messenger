@@ -3,6 +3,7 @@ import "../components/Messages/msg.css";
 import "../components/chatmsg.css";
 import { useState, useEffect } from "react";
 import { useRef } from "react";
+import "./Conversations/convo.css";
 
 const Chatmsg = ({ message, chatConversation }) => {
   console.log(chatConversation);
