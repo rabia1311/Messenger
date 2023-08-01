@@ -61,10 +61,12 @@ const Reply = ({ receiver }) => {
           <p
             key={index}
             className={
-              userId === "64c2135cac8c608dca5e88d9" ? "chat" : "paragraph"
+              message.userId === "64c212eec944ec0257b4c99c"
+                ? "chat"
+                : "paragraph"
             }
           >
-            {userId === "64c2135cac8c608dca5e88d9"
+            {message.userId === "64c2135cac8c608dca5e88d9"
               ? message.chat
               : message.content}
           </p>
