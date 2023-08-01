@@ -4,13 +4,11 @@ import "../components/chatmsg.css";
 
 const Reply = ({ receiver }) => {
   const [messages, setMessages] = useState([]);
-  console.log(receiver);
+  const userId = localStorage.getItem("_id");
 
   useEffect(() => {
-    // Get the _id from local storage
-    const userId = "64c212eec944ec0257b4c99c"; // You may need to update this part to get the actual user ID from local storage.
+    console.log(receiver);
 
-    // Make an HTTP GET request to fetch messages
     fetch(`http://localhost:4000/chat/receive/${userId}`)
       .then((response) => {
         if (!response.ok) {
@@ -19,11 +17,30 @@ const Reply = ({ receiver }) => {
         return response.json();
       })
       .then((data) => {
+        console.log("Received messages:", data);
         setMessages(data);
-        console.log(data); // Display all the fetched messages in the console
       })
       .catch((error) => console.error("Error fetching messages:", error));
-  }, []);
+
+    if (userId === "64c2135cac8c608dca5e88d9") {
+      fetch(
+        `http://localhost:4000/chat/list/64c2135cac8c608dca5e88d9/64c212eec944ec0257b4c99c`
+      )
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Failed to fetch list of messages.");
+          }
+          return response.json();
+        })
+        .then((data) => {
+          console.log("List of messages:", data);
+          setMessages(data);
+        })
+        .catch((error) =>
+          console.error("Error fetching list of messages:", error)
+        );
+    }
+  }, [userId]);
 
   return (
     <div className="message-owner">
@@ -36,8 +53,15 @@ const Reply = ({ receiver }) => {
       </div>
       <div className="messagecontent">
         {messages.map((message, index) => (
-          <p key={index} className="paragraph">
-            {message.content}
+          <p
+            key={index}
+            className={
+              userId === "64c2135cac8c608dca5e88d9" ? "chat" : "paragraph"
+            }
+          >
+            {userId === "64c2135cac8c608dca5e88d9"
+              ? message.chat
+              : message.content}
           </p>
         ))}
       </div>
