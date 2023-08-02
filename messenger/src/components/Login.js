@@ -32,10 +32,11 @@ const Login = () => {
       });
 
       // Assuming the server returns an object with "_id" field
-      const { _id } = response.data;
+      const { _id,name } = response.data;
 
       // Store the _id in localStorage
       localStorage.setItem("_id", _id);
+      localStorage.setItem("name",name);
 
       // Navigate to the home page ("/")
       navigate("/home");

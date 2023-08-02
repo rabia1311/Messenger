@@ -1,15 +1,19 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Chatmsg from "../Chatmsg";
 import "../Messages/msg.css";
 import Reply from "../Reply";
-import { useEffect } from "react";
+
 const Message = ({ receivedMessage, chatConversation, receiver }) => {
-  // Function to fetch the API and print the content in the console
+  // State to store the fetched data
+  const [data, setData] = useState(null);
+
+  // Function to fetch the API and store the data in the state
   const fetchMessages = async () => {
     try {
       const response = await fetch("http://localhost:4000/chat/messages");
       if (response.ok) {
         const data = await response.json();
+        setData(data); // Store the fetched data in the state
         console.log("API Response:", data);
       } else {
         console.log("Failed to fetch messages.");
@@ -27,10 +31,12 @@ const Message = ({ receivedMessage, chatConversation, receiver }) => {
   console.log(receivedMessage);
   console.log(chatConversation);
   console.log(receiver);
+  
   return (
     <div className="messages">
       <Reply receiver={receiver} />
-      <Chatmsg message={receivedMessage} chatConversation={chatConversation} />
+      {/* Pass the 'data' prop to the Chatmsg component */}
+      <Chatmsg message={receivedMessage} chatConversation={chatConversation} data={data} />
     </div>
   );
 };

@@ -5,8 +5,9 @@ import { useState, useEffect } from "react";
 import { useRef } from "react";
 import "./Conversations/convo.css";
 
-const Chatmsg = ({ message, chatConversation }) => {
+const Chatmsg = ({ message, chatConversation ,data }) => {
   console.log(chatConversation);
+  console.log(data);
   const [contactName, setContactName] = useState("");
   const [contactImage, setContactImage] = useState("");
   const [messages, setMessages] = useState([]); // Initialize as an empty array
