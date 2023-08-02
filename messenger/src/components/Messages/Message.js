@@ -14,6 +14,10 @@ const Message = ({ receivedMessage, chatConversation, receiver }) => {
       if (response.ok) {
         const data = await response.json();
         setData(data); // Store the fetched data in the state
+
+        console.log("API Response:", JSON.stringify(data, null, 2));
+
+
         console.log("API Response:", data);
       } else {
         console.log("Failed to fetch messages.");
