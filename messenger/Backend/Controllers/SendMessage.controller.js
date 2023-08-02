@@ -9,12 +9,15 @@ const sendMessageController = async (req, res) => {
     // Assuming you have some authentication mechanism, you can get the sender's ObjectId from the authenticated user
     // For this example, let's assume it's stored in req.user.id
     const senderId = "64c212eec944ec0257b4c99c";
+    const receiverId = "64c2135cac8c608dca5e88d9";
+    const chatId = 64356; // The desired chat_id
 
     // Create a new message document
     const newMessage = new SendMessage({
       sender: senderId,
+      receiver: receiverId,
       content: content,
-      chat: id,
+      chat_id: chatId, // Include the chat_id in the message document
     });
 
     // Save the message to the database
@@ -42,11 +45,11 @@ const getMessagesByIdController = async (req, res) => {
           $or: [
             {
               sender: new Mongoose.Types.ObjectId(sender_id),
-              chat: new Mongoose.Types.ObjectId(receiver_id),
+              receiver: new Mongoose.Types.ObjectId(receiver_id),
             },
             {
               sender: new Mongoose.Types.ObjectId(receiver_id),
-              chat: new Mongoose.Types.ObjectId(sender_id),
+              receiver: new Mongoose.Types.ObjectId(sender_id),
             },
           ],
         },
