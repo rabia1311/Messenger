@@ -6,12 +6,13 @@ const router = express.Router();
 const {
   sendMessageController,
   getMessagesByIdController,
+  getMessagesController
 } = require("../Controllers/SendMessage.controller"); // Replace with the actual path to your sendMessageController file
 
 // Create the POST route to send a message to a particular _i
 router.route("/send/:id").post(sendMessageController);
 router.route("/list/:sender_id/:receiver_id").get(getMessagesByIdController);
-
+router.route("/messages").get(getMessagesController);
 //Routes for receiver messages -
 
 // Export the router

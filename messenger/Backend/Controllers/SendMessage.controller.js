@@ -8,8 +8,8 @@ const sendMessageController = async (req, res) => {
 
     // Assuming you have some authentication mechanism, you can get the sender's ObjectId from the authenticated user
     // For this example, let's assume it's stored in req.user.id
-    const senderId = "64c212eec944ec0257b4c99c";
-    const receiverId = "64c2135cac8c608dca5e88d9";
+    const senderId = "64c2135cac8c608dca5e88d9";
+    const receiverId = "64c212eec944ec0257b4c99c";
     const chatId = 64356; // The desired chat_id
 
     // Create a new message document
@@ -29,6 +29,42 @@ const sendMessageController = async (req, res) => {
     res.status(500).json({ error: "Error sending message" });
   }
 };
+
+//Get messages by chat_id 
+
+
+const getMessagesController = async (req, res) => {
+  try {
+    const chatId = 64356; // The desired chat_id
+
+    // Query the database to fetch all messages with chat_id = 64356
+    const messages = await SendMessage.find({ chat_id: chatId });
+
+    res.status(200).json(messages); // Respond with the fetched messages
+  } catch (error) {
+    console.error("Error fetching messages:", error);
+    res.status(500).json({ error: "Error fetching messages" });
+  }
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // GET the conversations by particular _id .
 
@@ -99,4 +135,5 @@ const getMessagesByIdController = async (req, res) => {
 module.exports = {
   sendMessageController,
   getMessagesByIdController,
+  getMessagesController
 };
