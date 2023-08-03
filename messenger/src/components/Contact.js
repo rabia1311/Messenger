@@ -27,16 +27,33 @@ const Contact = ({ onNameClick, onChatConversation }) => {
     console.log("userChats:", userChats);
   }, [userChats]);
 
-  const handleNameClick = (name, image, _id) => {
+  const handleNameClick = async (name, image, _id) => {
     // Call the prop function to send the name, image, and _id to the parent component
     onNameClick(name, image, _id);
 
     console.log("Clicked name:", name);
     console.log("User ID:", _id);
+
+    // Set receiverId in localStorage
     localStorage.setItem("chatUserId", _id);
 
-    // Check if _id is defined before making the query
-    // ... (you may need to add the missing code here)
+    try {
+      // Get the senderId from localStorage
+      const senderId = localStorage.getItem("_id");
+
+      // Get the receiverId from localStorage
+      const receiverId = localStorage.getItem("chatUserId");
+
+      // Make the API request
+      const response = await fetch(
+        `http://localhost:4000/chat/messages/${senderId}/${receiverId}`
+      );
+      const data = await response.json();
+
+      console.log("API Response:", data);
+    } catch (error) {
+      console.error("Error fetching messages:", error);
+    }
   };
 
   return (
