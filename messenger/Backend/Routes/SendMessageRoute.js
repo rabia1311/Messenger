@@ -10,7 +10,7 @@ const {
 
 // Create the POST route to send a message to a particular _i
 router.post("/send/:senderId/:receiverId", sendMessageController);
-router.get("/messages", getMessagesController);
+router.get("/messages/:senderId/:receiverId", getMessagesController);
 
 //Routes for receiver messages -
 
