@@ -1,10 +1,10 @@
-// sendMessageModel.js
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const SendMessageSchema = new Schema(
   {
     sender: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+    receiver: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
     content: { type: String, trim: true },
     receiver: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
     chat_id: { type: String },
@@ -12,5 +12,6 @@ const SendMessageSchema = new Schema(
   },
   { timestamps: true }
 );
+
 const SendMessage = mongoose.model("SendMessage", SendMessageSchema);
 module.exports = SendMessage;

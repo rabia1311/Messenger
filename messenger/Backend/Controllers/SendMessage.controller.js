@@ -32,6 +32,8 @@ const sendMessageController = async (req, res) => {
   }
 };
 
+//Get messages by chat_id
+
 //GET the all the messages by chat_id
 
 const getMessagesController = async (req, res) => {
