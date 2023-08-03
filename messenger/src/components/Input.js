@@ -7,9 +7,17 @@ import attach from "../images/attach.png";
 const Input = ({ onMessageReceive, chatid }) => {
   const [content, setContent] = useState("");
   console.log(chatid);
-
   const handleSend = () => {
     if (content.trim() !== "") {
+      // Get the senderId and receiverId from localStorage
+      const senderId = localStorage.getItem("_id");
+      const receiverId = localStorage.getItem("chatUserId");
+
+      if (!senderId || !receiverId) {
+        console.error("Sender or receiver ID not found in localStorage.");
+        return;
+      }
+
       // Prepare the common headers and data for the fetch
       const requestOptions = {
         method: "POST",
@@ -18,52 +26,38 @@ const Input = ({ onMessageReceive, chatid }) => {
         },
         body: JSON.stringify({
           content: content, // Message content
-          chat: chatid, // Chat ID
-          // Assuming you have some mechanism to get the senderId (recipientId in this case)
-          sender: "64c212eec944ec0257b4c99c", // Replace with the actual senderId
+          sender: senderId, // Sender ID from localStorage
+          receiver: receiverId, // Receiver ID from localStorage
         }),
       };
 
-      // Define the endpoint based on the chatid value
-      let endpoint;
-      if (chatid === "64c2135cac8c608dca5e88d9") {
-        endpoint = `http://localhost:4000/chat/send/${chatid}`;
-      } else if (chatid === "64c212eec944ec0257b4c99c") {
-        endpoint = `http://localhost:4000/chat/receive/${chatid}`;
-      } else {
-        console.error("Unknown chatid:", chatid);
-        return;
-      }
+      // Construct the endpoint using senderId and receiverId
+      const endpoint = `http://localhost:4000/chat/send/${senderId}/${receiverId}`;
 
       // Send the message to the appropriate endpoint
       fetch(endpoint, requestOptions)
         .then((response) => response.json())
         .then((data) => {
           console.log("Message sent successfully:", data);
-
+          console.log("Message sent successfully:", content);
           // Clear the input field after sending the message
           setContent("");
 
-          onMessageReceive(content);
+          const getMessagesEndpoint = `http://localhost:4000/chat/messages`;
+          // You may need to adjust the endpoint based on the API's requirements for fetching messages.
+          // For example, if you need to pass the senderId and receiverId as query parameters, modify the endpoint accordingly.
 
-          // Fetch all messages for the particular _id after sending the message
-          if (chatid === "64c2135cac8c608dca5e88d9") {
-            return fetch(
-              "http://localhost:4000/chat/list/64c212eec944ec0257b4c99c/64c2135cac8c608dca5e88d9"
-            );
-          } else if (chatid === "64c212eec944ec0257b4c99c") {
-            return fetch(
-              "http://localhost:4000/chat/receive/64c212eec944ec0257b4c99c"
-            );
-          }
+          fetch(getMessagesEndpoint)
+            .then((response) => response.json())
+            .then((messagesData) => {
+              console.log("All Messages:", messagesData);
+              // Do whatever you want with the messagesData, e.g., display it in the UI.
+            })
+            .catch((error) => {
+              console.error("Error fetching messages:", error);
+            });
         })
-        .then((response) => response.json())
-        .then((allMessages) => {
-          console.log("All messages for the _id:", allMessages);
 
-          // Show the details posted in the network tab response
-          console.log("Network tab response:", allMessages);
-        })
         .catch((error) => {
           console.error("Error sending message:", error);
         });

@@ -27,7 +27,6 @@ const Chat = ({ onChatConversation }) => {
     setChatConversation(data);
   };
   console.log(chatConversation);
-
   return (
     <div className="chat-container">
       <div className="chat_list">

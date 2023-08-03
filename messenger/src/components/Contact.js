@@ -10,7 +10,7 @@ const Contact = ({ onNameClick, onChatConversation }) => {
       .get("http://localhost:4000/chat/getuser")
       .then((response) => {
         // Filter out the currently logged-in user using localStorage _id
-        const currentUserID = localStorage.getItem("chatUserId");
+        const currentUserID = localStorage.getItem("_id");
         const filteredChats = response.data.filter(
           (user) => user._id !== currentUserID
         );
@@ -27,10 +27,8 @@ const Contact = ({ onNameClick, onChatConversation }) => {
     console.log("userChats:", userChats);
   }, [userChats]);
 
-  // ... Rest of the code ...
-  // ... Rest of the code ...
   const handleNameClick = (name, image, _id) => {
-    // Call the prop function to send the name, image, _id, and userId to the parent component
+    // Call the prop function to send the name, image, and _id to the parent component
     onNameClick(name, image, _id);
 
     console.log("Clicked name:", name);
@@ -38,23 +36,7 @@ const Contact = ({ onNameClick, onChatConversation }) => {
     localStorage.setItem("chatUserId", _id);
 
     // Check if _id is defined before making the query
-    if (_id) {
-      const senderId = "64c212eec944ec0257b4c99c"; // Replace with the default sender's ID
-
-      // Fetch the chat conversation from the server based on _id and senderId
-      axios
-        .get(`http://localhost:4000/chat/list/${senderId}/${_id}`)
-        .then((response) => {
-          const chatConversation = response.data;
-          console.log("Chat Conversation:", chatConversation);
-          onChatConversation(chatConversation);
-        })
-        .catch((error) =>
-          console.error("Error fetching chat conversation:", error)
-        );
-    } else {
-      console.error("_id is undefined. Cannot make the query.");
-    }
+    // ... (you may need to add the missing code here)
   };
 
   return (
