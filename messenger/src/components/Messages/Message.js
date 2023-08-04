@@ -19,6 +19,7 @@ const Message = ({
 
   return (
     <div className="messages">
+      <Reply receiver={receiver} />
       <Chatmsg chatConversation={chatConversation} />
     </div>
   );

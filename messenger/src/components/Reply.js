@@ -8,44 +8,33 @@ const Reply = ({ receiver }) => {
 
   useEffect(() => {
     console.log(receiver);
+    fetchData();
+  }, []);
 
-    const fetchMessages = async () => {
-      try {
-        const response = await fetch(
-          `http://localhost:4000/chat/receive/${userId}`
-        );
-        if (!response.ok) {
-          throw new Error("Failed to fetch messages.");
-        }
-        const data = await response.json();
-        console.log("Received messages:", data);
-        setMessages(data);
-      } catch (error) {
-        console.error("Error fetching messages:", error);
+  const fetchData = async () => {
+    try {
+      const senderId = localStorage.getItem("chatUserId");
+      const receiverId = localStorage.getItem("_id");
+      const apiUrl = `http://localhost:4000/chat/messages/${senderId}/${receiverId}`;
+
+      const response = await fetch(apiUrl, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok.");
       }
-    };
 
-    if (userId === "64c2135cac8c608dca5e88d9") {
-      const fetchListMessages = async () => {
-        try {
-          const response = await fetch(
-            `http://localhost:4000/chat/list/64c2135cac8c608dca5e88d9/64c212eec944ec0257b4c99c`
-          );
-          if (!response.ok) {
-            throw new Error("Failed to fetch list of messages.");
-          }
-          const data = await response.json();
-          console.log("List of messages:", data);
-          setMessages(data);
-        } catch (error) {
-          console.error("Error fetching list of messages:", error);
-        }
-      };
-      fetchListMessages();
+      const data = await response.json();
+      console.log("API Response:", data);
+      setMessages(data);
+    } catch (error) {
+      console.error("Error fetching data:", error.message);
     }
-
-    fetchMessages();
-  }, [userId, receiver]);
+  };
 
   return (
     <div className="message-owner">
@@ -63,17 +52,8 @@ const Reply = ({ receiver }) => {
       </div>
       <div className="messagecontent">
         {messages.map((message, index) => (
-          <p
-            key={index}
-            className={
-              message.userId === "64c212eec944ec0257b4c99c"
-                ? "chat"
-                : "paragraph"
-            }
-          >
-            {userId === "64c2135cac8c608dca5e88d9"
-              ? message.chat
-              : message.content}
+          <p key={index} className="paragraph">
+            {message.content}
           </p>
         ))}
       </div>

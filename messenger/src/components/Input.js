@@ -43,7 +43,7 @@ const Input = ({ onMessageReceive, chatid }) => {
           // Clear the input field after sending the message
           setContent("");
 
-          const getMessagesEndpoint = `http://localhost:4000/chat/messages`;
+          const getMessagesEndpoint = `http://localhost:4000/chat/messages/${senderId}/${receiverId}`;
           // You may need to adjust the endpoint based on the API's requirements for fetching messages.
           // For example, if you need to pass the senderId and receiverId as query parameters, modify the endpoint accordingly.
 
