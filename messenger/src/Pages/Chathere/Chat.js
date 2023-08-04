@@ -25,6 +25,7 @@ const Chat = ({ onChatConversation }) => {
 
   const handleChatConversation = (data) => {
     setChatConversation(data);
+    console.log("Received data from Contact.js:", data);
   };
   console.log(chatConversation);
   return (

@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import { useRef } from "react";
 import "./Conversations/convo.css";
 
-const Chatmsg = ({ message, chatConversation ,data }) => {
+const Chatmsg = ({ message, chatConversation, data }) => {
   console.log(chatConversation);
   console.log(data);
   const [contactName, setContactName] = useState("");
@@ -18,10 +18,10 @@ const Chatmsg = ({ message, chatConversation ,data }) => {
   useEffect(() => {
     // Extract and set the conversation details from the chatConversation prop
     if (chatConversation) {
-      const { contactName, contactImage, messages } = chatConversation;
+      const { contactName, contactImage, message } = chatConversation;
       setContactName(contactName);
       setContactImage(contactImage);
-      setMessages(messages);
+      setMessages(message);
     }
   }, [chatConversation]);
 
@@ -45,7 +45,7 @@ const Chatmsg = ({ message, chatConversation ,data }) => {
         {chatConversation &&
           chatConversation.map((msg, index) => (
             <p key={index} className="ptag">
-              {msg.chat}
+              {msg.content}
             </p>
           ))}
         <div ref={messagesEndRef} />

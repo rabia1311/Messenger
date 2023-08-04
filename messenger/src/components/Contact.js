@@ -4,6 +4,7 @@ import "../components/contact.css";
 
 const Contact = ({ onNameClick, onChatConversation }) => {
   const [userChats, setUserChats] = useState([]);
+  const [selectedChat, setSelectedChat] = useState(null);
 
   useEffect(() => {
     axios
@@ -27,9 +28,9 @@ const Contact = ({ onNameClick, onChatConversation }) => {
     console.log("userChats:", userChats);
   }, [userChats]);
 
-  const handleNameClick = async (name, image, _id) => {
+  const handleNameClick = async (name, image, _id, data) => {
     // Call the prop function to send the name, image, and _id to the parent component
-    onNameClick(name, image, _id);
+    onNameClick(name, image, _id, data);
 
     console.log("Clicked name:", name);
     console.log("User ID:", _id);
@@ -51,6 +52,9 @@ const Contact = ({ onNameClick, onChatConversation }) => {
       const data = await response.json();
 
       console.log("API Response:", data);
+      onChatConversation(data);
+
+      setSelectedChat(data);
     } catch (error) {
       console.error("Error fetching messages:", error);
     }
