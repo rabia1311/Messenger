@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../components/Messages/msg.css";
 import SendIcon from "@mui/icons-material/Send";
 import SentimentSatisfiedAltIcon from "@mui/icons-material/SentimentSatisfiedAlt";
@@ -7,6 +7,7 @@ import attach from "../images/attach.png";
 const Input = ({ onMessageReceive, chatid }) => {
   const [content, setContent] = useState("");
   console.log(chatid);
+
   const handleSend = () => {
     if (content.trim() !== "") {
       // Get the senderId and receiverId from localStorage
@@ -39,25 +40,22 @@ const Input = ({ onMessageReceive, chatid }) => {
         .then((response) => response.json())
         .then((data) => {
           console.log("Message sent successfully:", data);
-          console.log("Message sent successfully:", content);
-          // Clear the input field after sending the message
+          console.log(content);
+          onMessageReceive(content);
           setContent("");
 
+          // Define getMessagesEndpoint here, after you have the senderId and receiverId
           const getMessagesEndpoint = `http://localhost:4000/chat/messages/${senderId}/${receiverId}`;
-          // You may need to adjust the endpoint based on the API's requirements for fetching messages.
-          // For example, if you need to pass the senderId and receiverId as query parameters, modify the endpoint accordingly.
 
           fetch(getMessagesEndpoint)
             .then((response) => response.json())
             .then((messagesData) => {
               console.log("All Messages:", messagesData);
-              // Do whatever you want with the messagesData, e.g., display it in the UI.
             })
             .catch((error) => {
               console.error("Error fetching messages:", error);
             });
         })
-
         .catch((error) => {
           console.error("Error sending message:", error);
         });

@@ -46,9 +46,6 @@ const Reply = ({ receiver }) => {
           alt="Contact"
         />
         {/* Assuming you have a timestamp available in the data */}
-        <span className="span">
-          {messages.length > 0 ? messages[0].timestamp : "Timestamp"}
-        </span>
       </div>
       <div className="messagecontent">
         {messages.map((message, index) => (

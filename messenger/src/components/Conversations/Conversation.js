@@ -34,10 +34,11 @@ const Conversation = ({
   console.log(chatConversation);
   console.log(contactid);
   console.log(contactName);
+
   const handleReceiveMessage = (newMessage) => {
     setMessage(newMessage);
+    console.log("Received message in Conversation.js:", newMessage);
   };
-  console.log(message);
 
   useEffect(() => {
     // No need to fetch the name and image from localStorage anymore

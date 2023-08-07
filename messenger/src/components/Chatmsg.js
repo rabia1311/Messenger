@@ -5,9 +5,9 @@ import { useState, useEffect } from "react";
 import { useRef } from "react";
 import "./Conversations/convo.css";
 
-const Chatmsg = ({ message, chatConversation, data }) => {
+const Chatmsg = ({ message, chatConversation, receivedMessage }) => {
   console.log(chatConversation);
-  console.log(data);
+  console.log(receivedMessage);
   const [contactName, setContactName] = useState("");
   const [contactImage, setContactImage] = useState("");
   const [messages, setMessages] = useState([]); // Initialize as an empty array
@@ -18,10 +18,10 @@ const Chatmsg = ({ message, chatConversation, data }) => {
   useEffect(() => {
     // Extract and set the conversation details from the chatConversation prop
     if (chatConversation) {
-      const { contactName, contactImage, message } = chatConversation;
+      const { contactName, contactImage, messages } = chatConversation;
       setContactName(contactName);
       setContactImage(contactImage);
-      setMessages(message);
+      setMessages(messages);
     }
   }, [chatConversation]);
 
@@ -33,13 +33,7 @@ const Chatmsg = ({ message, chatConversation, data }) => {
   return (
     <div className="message-owner">
       <div className="messageinfo">
-        <img
-          src="https://cdn3.vectorstock.com/i/1000x1000/30/97/flat-business-man-user-profile-avatar-icon-vector-4333097.jpg"
-          alt=""
-          className="messageinFo"
-        />
         <h4>You</h4>
-        <span className="span">just now</span>
       </div>
       <div className="messagecontent">
         {chatConversation &&
@@ -51,7 +45,7 @@ const Chatmsg = ({ message, chatConversation, data }) => {
         <div ref={messagesEndRef} />
       </div>
       <div className="messagecontent">
-        {message && <p className="ptag">{message}</p>}
+        <p className="ptag">{receivedMessage}</p>
       </div>
     </div>
   );
